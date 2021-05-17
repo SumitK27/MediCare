@@ -1,7 +1,7 @@
 # Modification Required
 ## Create a Database
-### 1. Create a database with any name of your choice and add that name in `/includes/config.php` with your mysql `host name`, `user name` and `password`
-### 2. Add 3 tables by using the following queries
+1. Create a database with any name of your choice and add that name in `/includes/config.php` with your mysql `host name`, `user name` and `password`
+2. Add 3 tables by using the following queries
 ```sql
     CREATE TABLE users (
     user_id INTEGER auto_increment PRIMARY KEY,
@@ -22,4 +22,4 @@
     CONSTRAINT pk_user_role PRIMARY KEY (user_id,role_id)
     );
 ```
-### 3. You are all set!
+3. You are all set!
