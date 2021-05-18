@@ -72,7 +72,15 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
             lengthMenu: [
                 [1, 5, 10, 20, -1],
                 [1, 5, 10, 20, "All"]
-            ]
+            ],
+            displayLength: 20,
+            drawCallback: function ( settings ) {
+                var api = this.api();
+                var rows = api.rows( {page: 'current' } ).nodes();
+                var last = null;
+
+                api.column()
+            }
         });
     </script>
 <?php
