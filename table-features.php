@@ -76,10 +76,19 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
             displayLength: 20,
             drawCallback: function ( settings ) {
                 var api = this.api();
+                // var rows = api.rows().nodes();
                 var rows = api.rows( {page: 'current' } ).nodes();
                 var last = null;
 
-                api.column()
+                // api.column(4).data().each(function(group, i) {
+                api.column(4, {page: 'current'}).data().each(function(group, i) {
+                    if (last !== group) {
+                        $(rows).eq(i).before(
+                            '<tr class="bg-success text-light text-center"><td colspan="6">' + group + '</td></tr>'
+                        );
+                        last = group;
+                    }
+                });
             }
         });
     </script>
