@@ -25,7 +25,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
         /* Rows > 0 */
         if ($rows > 0) {
         ?>
-            <table class="table table-striped table-fluid myTable">
+            <table class="table table-striped table-fluid" id="myTable">
                 <thead class='thead-dark'>
                     <tr>
                         <th scope='col'>ID</th>
@@ -67,11 +67,11 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
     </div>
 
     <script>
-        $('.myTable').DataTable({
+        $('#myTable').DataTable({
             pagingType: 'full_numbers',
             lengthMenu: [
-                [1, 5, 10, 20, 50, 100, -1],
-                [1, 5, 10, 20, 50, 100, "All"]
+                [1, 5, 10, 20, -1],
+                [1, 5, 10, 20, "All"]
             ]
         });
     </script>
