@@ -26,6 +26,28 @@ $account = new Account($conn);
             header("Location: dashboard.php");
         }
     }
+    if (isset($_POST["remember"])) {
+        $cookie_email = $_POST["email"];
+        $cookie_pass = $_POST["password"];
+        setcookie("email", $cookie_email, time() + (86400)); // for 1 day
+        setcookie("password", hash("sha512", $cookie_pass), time() + (86400)); // for 1 day
+    }
+    // print_r($_COOKIE);
+    if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
+        $c_email = $_COOKIE["email"];
+        $c_password = $_COOKIE["password"];
+
+        echo $c_email . "<br>" . $c_password;
+
+        $c_success = $account->c_login($c_email, $c_password);
+
+        if($c_success) {
+            $_SESSION["userLoggedIn"] = $c_email;
+
+            header("Location: index.php");
+        }
+    }
+
     if (isset($_SESSION["userLoggedIn"])) {
         header("Location: dashboard.php");
     }

@@ -52,6 +52,20 @@
             array_push($this->errorArray, Constants::$loginFailed);
             return false;
         }
+        
+        // Login by Cookie
+        public function c_login($em, $pw) {
+            $query = $this->conn->prepare("SELECT * FROM users WHERE email=:em AND password=:pw");
+            $query->bindValue(":em", $em);
+            $query->bindValue(":pw", $pw);
+            $query->execute();
+            if($query->rowCount() == 1) {
+                return true;
+            }
+
+            array_push($this->errorArray, Constants::$loginFailed);
+            return false;
+        }
 
         public function getInfo() {
             $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.name from users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
