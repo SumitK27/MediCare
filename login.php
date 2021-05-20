@@ -37,7 +37,7 @@ $account = new Account($conn);
         $c_email = $_COOKIE["email"];
         $c_password = $_COOKIE["password"];
 
-        echo $c_email . "<br>" . $c_password;
+        // echo $c_email . "<br>" . $c_password;
 
         $c_success = $account->c_login($c_email, $c_password);
 
