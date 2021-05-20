@@ -1,7 +1,7 @@
 <?php
 require_once('./includes/imports.php');
-require_once('./includes/components/navbar.php');
 require_once('./includes/config.php');
+require_once('./includes/components/navbar.php');
 require_once('./includes/classes/FormSanitizer.php');
 require_once('./includes/classes/Account.php');
 require_once('./includes/classes/Constants.php');
@@ -17,7 +17,6 @@ $account = new Account($conn);
         $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
         $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
         $success = $account->login($email, $password);
-        echo "<h1>" . $success . "</h1>";
         if($success) {
             // Store session
             $_SESSION["userLoggedIn"] = $email;

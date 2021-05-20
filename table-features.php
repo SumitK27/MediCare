@@ -30,7 +30,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
                     <tr>
                         <th scope='col'>ID</th>
                         <th scope='col'>First Name</th>
-                        <th scope='col'>Last ame</th>
+                        <th scope='col'>Last Name</th>
                         <th scope='col'>Email</th>
                         <th scope='col'>User Type</th>
                         <th scope='col'>Edit</th>

@@ -1,9 +1,4 @@
 <?php  
-    require_once('./includes/config.php');
-    require_once('./includes/classes/Account.php');
-    $account = new Account($conn);
-    $userInfo = $account->getInfo();
-    
     $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
 ?> 
 
