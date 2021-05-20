@@ -17,6 +17,7 @@ $account = new Account($conn);
         $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
         $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
         $success = $account->login($email, $password);
+        echo "<h1>" . $success . "</h1>";
         if($success) {
             // Store session
             $_SESSION["userLoggedIn"] = $email;
