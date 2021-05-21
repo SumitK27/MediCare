@@ -22,6 +22,27 @@
             return false;
         }
 
+        public function addUser($fn, $ln, $em, $rl) {
+            $this->validateName($fn);
+            $this->validateName($ln);
+            $this->validateEmail($em);
+
+            if(empty($this->errorArray)) {
+                $query = $this->conn->prepare("INSERT INTO users(first_name, last_name, email) VALUES(:fn, :ln, :em)");
+                $query->bindValue(":fn", $fn);
+                $query->bindValue(":ln", $ln);
+                $query->bindValue(":em", $em);
+                $query->execute();
+                
+                $lastId = $this->conn->lastInsertId();
+                $this->assignRole($lastId, $rl);
+
+                return true;
+            }
+
+            return false;
+        }
+
         private function insertUserDetails($fn, $ln, $em, $pw, $rl) {
             $pw = hash("sha512", $pw);
 
@@ -68,7 +89,7 @@
         }
 
         public function getInfo() {
-            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.name from users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
+            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
             $query->bindValue(":em", $_SESSION["userLoggedIn"]);
             $query->execute();
             $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -76,16 +97,35 @@
         }
 
         public function getUser($id) {
-            $query = $this->conn->prepare("SELECT user_id, first_name, last_name, email, password, name FROM users, roles WHERE user_id=:id");
+            $query = $this->conn->prepare("SELECT user_id, first_name, last_name, email, password, role_name FROM users, roles WHERE user_id=:id");
             $query->bindValue(":id", $id);
             $query->execute();
             $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
             //print_r($userInfo);
             return $userInfo[0];
         }
+/* 
+        public function getUserType($rl) {
+            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.user_id = user_role.user_id AND user_role.role_id = roles.role_id AND roles.role_name=:rl");
+            $query->bindValue(":rl", $rl);
+            $query->execute();
+            $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
+            //print_r($userInfo);
+            return $userInfo;
+        } */
+
+        public function getUserTypeCreatedByMe($id, $rl) {
+            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles, user_added_by WHERE users.user_id = user_role.user_id AND user_role.role_id = roles.role_id AND roles.role_name=:rl AND user_added_by.nurse_id=:id AND user_added_by.user_id=users.user_id");
+            $query->bindValue(":id", $id);
+            $query->bindValue(":rl", $rl);
+            $query->execute();
+            $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
+            //print_r($userInfo);
+            return $userInfo;
+        }
 
         public function getAllUsers() {
-            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.name from users, user_role, roles WHERE users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
+            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
             $query->execute();
             $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
             //print_r($userInfo);

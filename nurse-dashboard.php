@@ -6,7 +6,7 @@ require_once('./includes/classes/Account.php');
 
 $account = new Account($conn);
 $getInfo = $account->getInfo();
-if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Admin") {
+if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Nurse") {
 ?>
     <title>Tables</title>
 
@@ -21,7 +21,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Adm
     <div class="container">
         <br><br>
         <?php
-        $rows = $account->getAllUsers();
+        $rows = $account->getUserTypeCreatedByMe($getInfo['user_id'], "Patient");
         /* Rows > 0 */
         if ($rows > 0) {
         ?>
@@ -78,8 +78,8 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Adm
         $('.myTable').DataTable({
             pagingType: 'full_numbers',
             lengthMenu: [
-                [1, 5, 10, 20, 50, 100, -1],
-                [1, 5, 10, 20, 50, 100, "All"]
+                [5, 10, 20, 50, 100, -1],
+                [5, 10, 20, 50, 100, "All"]
             ]
         });
     </script>

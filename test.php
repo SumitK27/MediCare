@@ -16,6 +16,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 
 
     <div class="container">
@@ -33,6 +34,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
                         <th scope='col'>Last Name</th>
                         <th scope='col'>Email</th>
                         <th scope='col'>User Type</th>
+                        <th scope='col'>More Details</th>
                         <th scope='col'>Edit</th>
                     </tr>
                 </thead>
@@ -45,10 +47,17 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
                             <th scope='row'> <?php echo $row['first_name'] ?> </th>
                             <th scope='row'> <?php echo $row['last_name'] ?> </th>
                             <th scope='row'> <?php echo $row['email'] ?> </th>
+                            <th scope='row'> <i class="fa fa-chevron-circle-down" aria-hidden="true"></i> </th>
                             <th scope='row'> <?php echo $row['name'] ?> </th>
                             <th scope='row'>
-                                <button class="btn btn-primary" onclick="document.location='edit.php?user_id=<?php echo $row["user_id"] ?>'">Edit</button>
-                                <button class="btn btn-primary" onclick="document.location='delete.php?user_id=<?php echo $row["user_id"] ?>'">Delete</button>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash" ></i></a>
+                                    </div>
+                                </div>
                             </th>
                         </tr>
                     <?php
@@ -81,10 +90,10 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Admin") 
                 var last = null;
 
                 // api.column(4).data().each(function(group, i) {
-                api.column(4, {page: 'current'}).data().each(function(group, i) {
+                api.column(5, {page: 'current'}).data().each(function(group, i) {
                     if (last !== group) {
                         $(rows).eq(i).before(
-                            '<tr class="bg-success text-light text-center"><td colspan="6">' + group + '</td></tr>'
+                            '<tr class="bg-success text-light text-center"><td colspan="7">' + group + '</td></tr>'
                         );
                         last = group;
                     }

@@ -36,11 +36,13 @@
                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="avatarDropdown">
                         <a class="dropdown-item" href="./dashboard.php">My Profile</a>
                         <a class="dropdown-item" href="<?php 
-                            if ($userInfo['name'] == 'Admin') {
+                            if ($userInfo['role_name'] == 'Admin') {
                                 echo './admin-dashboard.php'; 
-                            } elseif ($userInfo['name'] == 'Doctor') {
+                            } elseif ($userInfo['role_name'] == 'Nurse') {
+                                echo './nurse-dashboard.php';
+                            } elseif ($userInfo['role_name'] == 'Doctor') {
                                 echo './doctor-dashboard.php';
-                            } elseif ($userInfo['name'] == 'Patient') {
+                            } elseif ($userInfo['role_name'] == 'Patient') {
                                 echo './dashboard.php';
                             }
                         ?>">Dashboard</a>

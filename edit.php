@@ -11,7 +11,7 @@
     $userInfo = $account->getUser($id);
 
     $getInfo = $account->getInfo();
-	if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == 'Admin') {
+	if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
         // echo $_SESSION["userLoggedIn"];
 ?>
 <div class="container-fluid">
@@ -69,7 +69,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="userType">User Type</label>
-                            <input type="tel" class="form-control" name="userType" placeholder="userType: 1 User: 0" maxlength="1" value="<?php echo $userInfo['name'] ?>" required>
+                            <input type="tel" class="form-control" name="userType" placeholder="userType: 1 User: 0" maxlength="1" value="<?php echo $userInfo['role_name'] ?>" required>
                         </div>
                     </div>
                 </div>

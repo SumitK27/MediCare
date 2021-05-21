@@ -10,7 +10,7 @@
     $account = new Account($conn);
     // IF LOGGED IN AS DOCTOR, SHOW THE BELLOW HTML PAGE
 	$getInfo = $account->getInfo();
-	if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["name"] == "Doctor") {
+	if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Doctor") {
 ?>
 
 <!-- Your Page -->
