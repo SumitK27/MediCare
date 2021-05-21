@@ -1,10 +1,10 @@
 <?php
 require_once('./includes/imports.php');
-require_once('./includes/components/navbar.php');
 require_once('./includes/config.php');
 require_once('./includes/classes/Account.php');
 
 $account = new Account($conn);
+require_once('./includes/components/navbar.php');
 $getInfo = $account->getInfo();
 if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Nurse") {
 ?>
