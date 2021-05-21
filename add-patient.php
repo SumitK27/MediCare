@@ -50,8 +50,6 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Nur
 
 <?php
 } else {
-?>
-    <h1>You are Not allowed to access this Page</h1>
-<?php
+    header("location:index.php");
 }
 ?>
