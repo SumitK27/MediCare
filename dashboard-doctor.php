@@ -29,7 +29,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Doc
                 <a class="nav-link" id="v-pills-nurse-tab" data-toggle="pill" href="#v-pills-nurse" role="tab" aria-controls="v-pills-nurse" aria-selected="true">Nurses</a>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-10">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="card">
@@ -130,7 +130,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Doc
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade show active" id="v-pills-patient" role="tabpanel" aria-labelledby="v-pills-patient-tab">
+                <div class="tab-pane fade show" id="v-pills-patient" role="tabpanel" aria-labelledby="v-pills-patient-tab">
                     <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fa fa-user-plus"></i>Add user</button>
                     <br><br>
                     <?php
