@@ -10,5 +10,7 @@
         public static $passwordIncorrect = "Your old Password is incorrect";
         public static $dateInvalid = "Date is Invalid";
         public static $contactInvalid = "Contact No Invalid";
+        public static $aadhaarInvalid = "Aadhaar ID should be 12 digit in length";
+        public static $aadhaarTaken = "Aadhaar ID Already Present";
     }
 ?>

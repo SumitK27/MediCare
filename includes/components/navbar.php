@@ -37,11 +37,11 @@
                         <a class="dropdown-item" href="./dashboard.php">My Profile</a>
                         <a class="dropdown-item" href="<?php 
                             if ($userInfo['role_name'] == 'Admin') {
-                                echo './admin-dashboard.php'; 
+                                echo './dashboard-admin.php'; 
                             } elseif ($userInfo['role_name'] == 'Nurse') {
-                                echo './nurse-dashboard.php';
+                                echo './dashboard-nurse.php';
                             } elseif ($userInfo['role_name'] == 'Doctor') {
-                                echo './doctor-dashboard.php';
+                                echo './dashboard-doctor.php';
                             } elseif ($userInfo['role_name'] == 'Patient') {
                                 echo './dashboard.php';
                             }

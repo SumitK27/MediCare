@@ -5,6 +5,7 @@ require_once('./includes/classes/Account.php');
 require_once('./includes/classes/Constants.php');
 
 $account = new Account($conn);
+$userInfo = $account->getInfo();
 require_once('./includes/components/navbar.php');
 
 if (isset($_SESSION["userLoggedIn"])) {

@@ -20,6 +20,8 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Nur
 
     <div class="container">
         <br><br>
+        <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fa fa-user-plus"></i>Add user</button>
+        <br><br>
         <?php
         $rows = $account->getUserTypeCreatedByMe($getInfo['user_id'], "Patient");
         /* Rows > 0 */

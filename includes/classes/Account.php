@@ -22,7 +22,7 @@
             return false;
         }
 
-        public function addUser($fn, $ln, $em, $rl) {
+        public function addUser($fn, $ln, $em, $ni, $rl) {
             $this->validateName($fn);
             $this->validateName($ln);
             $this->validateEmail($em);
@@ -36,6 +36,11 @@
                 
                 $lastId = $this->conn->lastInsertId();
                 $this->assignRole($lastId, $rl);
+                
+                $query = $this->conn->prepare("INSERT INTO user_added_by(nurse_id, user_id) VALUES(:ni, :ui)");
+                $query->bindValue(":ni", $ni);
+                $query->bindValue(":ui", $lastId);
+                $query->execute();
 
                 return true;
             }
@@ -196,7 +201,7 @@
             if (strlen($nm) < 2 || strlen($nm) > 25) {
                 array_push($this->errorArray, Constants::$nameCharacters);
             }
-            echo "$nm";
+            // echo "$nm";
         }
 
         private function validateContact($cn) {

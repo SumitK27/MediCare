@@ -15,7 +15,12 @@
         // echo $_SESSION["userLoggedIn"];
 ?>
 <div class="container-fluid">
-    <button class="btn btn-primary" onclick="document.location='admin-dashboard.php'"><i class="fas fa-arrow-circle-left"></i> Back</button>
+    <button class="btn btn-primary" onclick="document.location='<?php 
+    if(isset($_SERVER['HTTP_REFERER']))
+        echo $_SERVER['HTTP_REFERER'];
+    else
+        echo 'dashboard.php';
+    ?>'"><i class="fas fa-arrow-circle-left"></i> Back</button>
     <?php
         if (isset($_POST["updateInfo"])) {
             $firstName = $_POST["firstName"];

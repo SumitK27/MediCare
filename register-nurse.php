@@ -15,7 +15,7 @@ if (isset($_POST["register"])) {
     $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
     $password2 = FormSanitizer::sanitizeFormPassword($_POST["password2"]);
 
-    $success = $account->register($firstName, $lastName, $email, $password, $password2, 4);
+    $success = $account->register($firstName, $lastName, $email, $password, $password2, 2);
 
     if ($success) {
         // Store Session
