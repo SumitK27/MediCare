@@ -49,7 +49,8 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Nur
                             <th scope='row'> <?php echo $row['last_name'] ?> </th>
                             <th scope='row'> <?php echo $row['email'] ?> </th>
                             <th scope='row'> <?php echo $row['role_name'] ?> </th>
-                            <th scope='row' class="text-center"> <i class="fa fa-chevron-circle-down" aria-hidden="true"></i> </th>
+                            <th scope='row' class="text-center">
+                            <a href='user-details.php?user_id=<?php echo $row['user_id'] ?>'><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a> </th>
                             <th scope='row'>
                             <div class="row">
                                     <div class="col">

@@ -74,7 +74,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="userType">User Type</label>
-                            <input type="tel" class="form-control" name="userType" placeholder="userType: 1 User: 0" maxlength="1" value="<?php echo $userInfo['role_name'] ?>" required>
+                            <input type="text" class="form-control" name="userType" value="<?php echo $userInfo['role_name'] ?>" required>
                         </div>
                     </div>
                 </div>
