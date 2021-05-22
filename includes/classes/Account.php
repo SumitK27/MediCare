@@ -144,7 +144,7 @@
             $query->bindValue(":ln", $ln);
             $query->bindValue(":em", $em);
             $query->bindValue(":ut", $ut);
-            header("Location: admin-dashboard.php");
+            // header("Location: dashboard-doctor.php");
             return $query->execute();
         }
 

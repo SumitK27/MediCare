@@ -5,10 +5,10 @@
     require_once('./includes/classes/Constants.php');
     
     $account = new Account($conn);
-    require_once('./includes/components/navbar.php');
-
+    
     $id = $_GET["user_id"];
     $userInfo = $account->getUser($id);
+    require_once('./includes/components/navbar.php');
 
     $getInfo = $account->getInfo();
 	if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {

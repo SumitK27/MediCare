@@ -5,10 +5,10 @@ require_once('./includes/classes/Account.php');
 require_once('./includes/classes/Constants.php');
 
 $account = new Account($conn);
-require_once('./includes/components/navbar.php');
 
 $id = $_GET["user_id"];
 $userInfo = $account->getUser($id);
+require_once('./includes/components/navbar.php');
 
 $getInfo = $account->getInfo();
 if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
@@ -18,7 +18,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h1><?php echo $userInfo["first_name"] . " " . $userInfo["last_name"] ?>Details</h1>
+                <h1><?php echo $userInfo["first_name"] . " " . $userInfo["last_name"] ?> Details</h1>
                 </h1>
             </div>
             <div class="card-body">
@@ -60,7 +60,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary float-right"><i class="fa fa-print"></i> Print</button>
+                <button class="btn btn-primary float-right"><i class="fa fa-print" onclick="window.print();"></i> Print</button>
             </div>
         </div>
         <?php
