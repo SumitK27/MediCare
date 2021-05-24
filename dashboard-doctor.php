@@ -24,8 +24,8 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Doc
     <div class="row">
         <div class="col-2">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-                <a class="nav-link active" id="v-pills-patient-tab" data-toggle="pill" href="#v-pills-patient" role="tab" aria-controls="v-pills-patient" aria-selected="true">Patients</a>
+                <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                <a class="nav-link" id="v-pills-patient-tab" data-toggle="pill" href="#v-pills-patient" role="tab" aria-controls="v-pills-patient" aria-selected="true">Patients</a>
                 <a class="nav-link" id="v-pills-nurse-tab" data-toggle="pill" href="#v-pills-nurse" role="tab" aria-controls="v-pills-nurse" aria-selected="true">Nurses</a>
             </div>
         </div>
