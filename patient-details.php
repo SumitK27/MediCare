@@ -1,6 +1,3 @@
-<title>Patient Details</title>
-<link rel="stylesheet" href="./includes/css/style.details.css" />
-<script src="./includes//js/multi-step.js"></script>
 <?php
     require_once('./includes/imports.php');
     require_once('./includes/config.php');
@@ -17,6 +14,10 @@
 	if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
         // echo $_SESSION["userLoggedIn"];
 ?>
+<title>Patient Details</title>
+<link rel="stylesheet" href="./includes/css/style.details.css" />
+<script src="./includes/js/multi-step.js"></script>
+
     <div class="container-fluid">
             <div class="row justify-content-center">
                 <div
