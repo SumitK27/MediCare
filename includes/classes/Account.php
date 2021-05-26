@@ -94,11 +94,15 @@
         }
 
         public function getInfo() {
-            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
-            $query->bindValue(":em", $_SESSION["userLoggedIn"]);
-            $query->execute();
-            $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
-            return $userInfo[0];
+            if(isset($_SESSION["userLoggedIn"])) {
+                $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
+                $query->bindValue(":em", $_SESSION["userLoggedIn"]);
+                $query->execute();
+                $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
+                return $userInfo[0];
+            } else {
+                return;
+            }
         }
 
         public function getUser($id) {
@@ -135,6 +139,10 @@
             $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
             //print_r($userInfo);
             return $userInfo;
+        }
+
+        public function addPatientData($id, ) {
+            $query = $this->conn->prepare("");
         }
 
         public function updateUser($id, $fn, $ln, $em, $ut) {
