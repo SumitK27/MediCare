@@ -12,5 +12,7 @@
         public static $contactInvalid = "Contact No Invalid";
         public static $aadhaarInvalid = "Aadhaar ID should be 12 digit in length";
         public static $aadhaarTaken = "Aadhaar ID Already Present";
+        public static $addressInvalid = "Address shouldn't be empty";
+        public static $genderInvalid = "Gender Invalid";
     }
 ?>

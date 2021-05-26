@@ -141,8 +141,48 @@
             return $userInfo;
         }
 
-        public function addPatientData($id, ) {
-            $query = $this->conn->prepare("");
+        public function addPatientPersonalData($id, $adh, $mob, $addr, $dob, $gen) {
+            $this->validateAadhaar($adh);
+            $this->validateContact($mob);
+            $this->validateAddress($addr);
+            $this->validateDOB($dob);
+            $this->validateGender($gen);
+
+            if(empty($this->errorArray)) {
+                $query = $this->conn->prepare("INSERT INTO user_details, users VALUES (:id, :adh, :mob, :addr, :dob, :gen) WHERE users.user_id=:id");
+                $query->bindValue(":id", $id);
+                $query->bindValue(":adh", $adh);
+                $query->bindValue(":mob", $mob);
+                $query->bindValue(":addr", $addr);
+                $query->bindValue(":dob", $dob);
+                $query->bindValue(":gen", $gen);
+                $query->execute();
+                return;
+            }
+
+            return false;
+        }
+
+        public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $nausea, $chills, $quarantine, $severity, $date_added) {
+            $query = $this->conn->prepare("INSERT INTO user_symptoms, users VALUES (:id, :fever, :breathing, :cough, :nose, :sense, :throat, :cont_pos, :pos, :travelled, :tired, :nausea, :chills, :quarantine, :severity, :date_added) WHERE users.user_id=:id");
+            
+            $query->bindValue(":id", $id);
+            $query->bindValue(":fever", $fev);
+            $query->bindValue(":breathing", $breath);
+            $query->bindValue(":cough", $cough);
+            $query->bindValue(":nose", $nose);
+            $query->bindValue(":sense", $sense);
+            $query->bindValue(":throat", $throat);
+            $query->bindValue(":cont_pos", $cont_pos);
+            $query->bindValue(":pos", $pos);
+            $query->bindValue(":travelled", $travelled);
+            $query->bindValue(":tired", $tired);
+            $query->bindValue(":nausea", $nausea);
+            $query->bindValue(":chills", $chills);
+            $query->bindValue(":quarantine", $quarantine);
+            $query->bindValue(":severity", $severity);
+            $query->bindValue(":date_added", $date_added);
+            $query->execute();
         }
 
         public function updateUser($id, $fn, $ln, $em, $ut) {
@@ -209,12 +249,29 @@
             if (strlen($nm) < 2 || strlen($nm) > 25) {
                 array_push($this->errorArray, Constants::$nameCharacters);
             }
-            // echo "$nm";
         }
 
         private function validateContact($cn) {
             if (strlen($cn) != 10) {
                 array_push($this->errorArray, Constants::$contactInvalid);
+            }
+        }
+
+        private function validateAddress($addr) {
+            if (strlen($addr) <= 5 || strlen(($addr) >= 80)) {
+                array_push($this->errorArray, Constants::$addressInvalid);
+            }
+        }
+
+        private function validateGender($gen) {
+            if ($gen > 3 || $gen <= 0) {
+                array_push($this->errorArray, Constants::$genderInvalid);
+            }
+        }
+
+        private function validateAadhaar($adn) {
+            if (strlen($adn) != 12) {
+                array_push($this->errorArray, Constants::$aadhaarInvalid);
             }
         }
 
