@@ -1,4 +1,11 @@
 <title>Doctor's Dashboard</title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 <?php
 require_once('./includes/imports.php');
@@ -14,42 +21,12 @@ require_once('./includes/components/navbar.php');
 if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Doctor") {
 ?>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
     <div class="row">
-        <div class="col-2 bg-dark mt-6" style="height: 100vh;">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" >
-                <nav class="sb-sidenav accordion text-white text-left" id="sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu">
-                     <div class="col-12 sb-sidenav-footer p-3" style="width: 250px; height: 100px; ">
-                        <div class="small">Logged in as:</div>
-                        <?php
-                                $userInfo = $account->getInfo();
-                                echo $userInfo['first_name'] . " " . $userInfo['last_name'];
-                         ?>
-                     </div>
-                     <h5 class="col-12 font-weight-bold text-primary text-white" id="v-pills-tab" role="tablist" aria-orientation="vertical">USERS</h5>
-
-                        <div  class="col-12 nav flex-column nav-pills text-white" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link text-white" href="#v-pills-profile">
-
-                                <a class="nav-link active text-white mb-4" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fa fa-user-circle mr-3"></i>Profile</a>
-
-                                <a class="nav-link text-white mb-4" id="v-pills-patient-tab " data-toggle="pill" href="#v-pills-patient" role="tab" aria-controls="v-pills-patient" aria-selected="true"><i class="fa fa-user mr-3"></i>Patients</a>
-
-                                <a class="nav-link text-white" id="v-pills-nurse-tab " data-toggle="pill" href="#v-pills-nurse" role="tab" aria-controls="v-pills-nurse" aria-selected="true"><i class="fas fa-user-md mr-3"></i>Nurses</a>
-                            </a>
-                        </div>
-                    </div>
-                    
-                </nav>
+        <div class="col-2">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                <a class="nav-link" id="v-pills-patient-tab" data-toggle="pill" href="#v-pills-patient" role="tab" aria-controls="v-pills-patient" aria-selected="true">Patients</a>
+                <a class="nav-link" id="v-pills-nurse-tab" data-toggle="pill" href="#v-pills-nurse" role="tab" aria-controls="v-pills-nurse" aria-selected="true">Nurses</a>
             </div>
         </div>
         <div class="col-10">
@@ -278,15 +255,6 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Doc
             </div>
         </div>
     </div>
-    <script>
-        $('.myTable').DataTable({
-            pagingType: 'full_numbers',
-            lengthMenu: [
-                [5, 10, 20, 50, 100, -1],
-                [5, 10, 20, 50, 100, "All"]
-            ]
-        });
-    </script>
 <?php
 } else {
     header("location:index.php");

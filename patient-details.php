@@ -10,6 +10,19 @@ $id = $_GET["user_id"];
 $userInfo = $account->getUser($id);
 require_once('./includes/components/navbar.php');
 
+if (isset($_POST['submit'])) {
+    $aadhaar_no = FormSanitizer::sanitizeFormContact($_POST['aadhaarCard']);
+    $mobile_no = FormSanitizer::sanitizeFormContact($_POST['mobileNo']);
+    $address = FormSanitizer::sanitizeFormString($_POST["address"]);
+    $dob = FormSanitizer::sanitizeFormDOB($_POST["dob"]);
+    $gender = "";
+    $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
+
+
+    $contacted = "";
+    $severity = "";
+}
+
 $getInfo = $account->getInfo();
 if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
     // echo $_SESSION["userLoggedIn"];
@@ -26,7 +39,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="
-                        col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5
+                        col-xl-5
                         text-center
                         p-0
                         mt-3
@@ -38,7 +51,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                     <p>Fill all form field to go to next step</p>
                     <!--End Patients Info-->
 
-                    <form id="msform" action="" method="post">
+                    <form id="msform" action="print.php" method="POST">
                         <!--Start Progress bar-->
                         <div class="progress">
                             <div class="progress-bar progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -47,26 +60,26 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
 
                         <br />
 
-                        <!--Aadhar Card-->
+                        <!--Aadhaar Card-->
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">
-                                            Aadhar Card:
+                                            Aadhaar Card:
                                         </h2>
                                     </div>
                                     <div class="col-5">
                                         <h2 class="steps">Step 1 - 5</h2>
                                     </div>
                                 </div>
-                                <label class="fieldlabels">Enter Aadhar Card Number:
+                                <label class="fieldlabels">Enter Aadhaar Card Number:
                                 </label>
-                                <input type="text" data-type="adhaar-number" name="adharcard" placeholder="Aadhar Card Number" maxlength="12" required />
+                                <input type="text" data-type="aadhaar-number" name="aadhaarCard" placeholder="Aadhaar Card Number" maxlength="12" required />
                             </div>
                             <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
-                        <!--end Aadhar card-->
+                        <!--end Aadhaar card-->
 
                         <!--start Personal Information-->
                         <fieldset>
@@ -87,24 +100,24 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                 <input type="text" name="email" placeholder="Email ID" value="<?php echo $userInfo['email']; ?>" />
                                 <label class="fieldlabels">Mobile No.:
                                 </label>
-                                <input type="text" data-type="mobile-no" name="mobileno" placeholder="Mobile Number" maxlength="10" />
+                                <input type="text" data-type="mobile-no" name="mobileNo" placeholder="Mobile Number" maxlength="10" />
                                 <label class="fieldlabels">Address:</label>
                                 <textarea name="address" rows="3" placeholder="Address"></textarea>
                                 <label class="fieldlabels">Date of Birth:</label>
                                 <input type="date" name="birthday" placeholder="DOB" />
                                 <label class="fieldlabels">Gender:</label>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="maleCheck" name="gender" />
+                                    <input type="radio" class="custom-control-input" id="maleCheck" name="gender" value="Male" />
                                     <label class="custom-control-label" for="maleCheck">Male</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="femaleCheck" name="gender" />
+                                    <input type="radio" class="custom-control-input" id="femaleCheck" name="gender" value="Female" />
                                     <label class="custom-control-label" for="femaleCheck">Female</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="transgenderCheck" name="gender" />
+                                    <input type="radio" class="custom-control-input" id="transgenderCheck" name="gender" value="Transgender" />
                                     <label class="custom-control-label" for="transgenderCheck">Transgender</label>
                                 </div>
                             </div>
@@ -113,7 +126,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                         </fieldset>
                         <!--end Personal Information-->
 
-                        <!--Symptoms fieldsets -->
+                        <!--Symptoms fieldset -->
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
@@ -130,77 +143,77 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="feverCheck" name="fever" />
+                                    <input type="checkbox" class="custom-control-input" id="feverCheck" name="fever" value="1" />
                                     <label class="custom-control-label" for="feverCheck">Fever</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="tirednessCheck" name="tiredness" />
+                                    <input type="checkbox" class="custom-control-input" id="tirednessCheck" name="tiredness" value="1" />
                                     <label class="custom-control-label" for="tirednessCheck">Tiredness</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="dryCoughCheck" name="dry-cough" />
+                                    <input type="checkbox" class="custom-control-input" id="dryCoughCheck" name="dry-cough" value="1" />
                                     <label class="custom-control-label" for="dryCoughCheck">Dry Cough</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="difficultyBreathingCheck" name="difficulty-breathing" />
+                                    <input type="checkbox" class="custom-control-input" id="difficultyBreathingCheck" name="difficulty-breathing" value="1" />
                                     <label class="custom-control-label" for="difficultyBreathingCheck">Difficulty in Breathing</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="soreThroatCheck" name="sore-throat" />
+                                    <input type="checkbox" class="custom-control-input" id="soreThroatCheck" name="sore-throat" value="1" />
                                     <label class="custom-control-label" for="soreThroatCheck">Sore Throat</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="painsCheck" name="pains" />
+                                    <input type="checkbox" class="custom-control-input" id="painsCheck" name="pains" value="1" />
                                     <label class="custom-control-label" for="painsCheck">Pains</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="nasalCongestionCheck" name="nasal-congestion" />
+                                    <input type="checkbox" class="custom-control-input" id="nasalCongestionCheck" name="nasal-congestion" value="1" />
                                     <label class="custom-control-label" for="nasalCongestionCheck">Nasal Congestion</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="runnyNoseCheck" name="runny-nose" />
+                                    <input type="checkbox" class="custom-control-input" id="runnyNoseCheck" name="runny-nose" value="1" />
                                     <label class="custom-control-label" for="runnyNoseCheck">Runny Nose</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="diarrheaCheck" name="diarrhea" />
+                                    <input type="checkbox" class="custom-control-input" id="diarrheaCheck" name="diarrhea" value="1" />
                                     <label class="custom-control-label" for="diarrheaCheck">Diarrhea</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="noneExperiencingCheck" name="none-experiencing" />
+                                    <input type="checkbox" class="custom-control-input" id="noneExperiencingCheck" name="none-experiencing" value="1" />
                                     <label class="custom-control-label" for="noneExperiencingCheck">None Experiencing</label>
                                 </div>
                                 <div class="
                                             custom-control custom-checkbox
                                             mb-3
                                         ">
-                                    <input type="checkbox" class="custom-control-input" id="noneSymptomCheck" name="none-symptom" />
+                                    <input type="checkbox" class="custom-control-input" id="noneSymptomCheck" name="none-symptom" value="1" />
                                     <label class="custom-control-label" for="noneSymptomCheck">None Symptom</label>
                                 </div>
                             </div>
@@ -208,7 +221,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                             <input type="button" name="next" class="next action-button" value="Next" />
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
-                        <!--end Symptoms fieldsets -->
+                        <!--end Symptoms fieldset -->
 
                         <!--start Contact-->
                         <fieldset>
@@ -226,42 +239,42 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                 <label class="fieldlabels">Severity of your selected
                                     Symptoms:</label>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="mildCheck" name="severity" />
+                                    <input type="radio" class="custom-control-input" id="mildCheck" name="severity" value="Mild" />
                                     <label class="custom-control-label" for="mildCheck">Mild</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="moderateCheck" name="severity" />
+                                    <input type="radio" class="custom-control-input" id="moderateCheck" name="severity" value="Moderate" />
                                     <label class="custom-control-label" for="moderateCheck">Moderate</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="severeCheck" name="severity" />
+                                    <input type="radio" class="custom-control-input" id="severeCheck" name="severity" value="Sever" />
                                     <label class="custom-control-label" for="severeCheck">Severe</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="noneCheck" name="severity" />
+                                    <input type="radio" class="custom-control-input" id="noneCheck" name="severity" value="None" />
                                     <label class="custom-control-label" for="noneCheck">None</label>
                                 </div>
 
                                 <label class="fieldlabels">Got in contact with someone tested
                                     positive</label>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="yesCheck" name="contact" />
+                                    <input type="radio" class="custom-control-input" id="yesCheck" name="contact" value="Yes" />
                                     <label class="custom-control-label" for="yesCheck">Yes</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="noCheck" name="contact" />
+                                    <input type="radio" class="custom-control-input" id="noCheck" name="contact" value="No" />
                                     <label class="custom-control-label" for="noCheck">No</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="dontknowCheck" name="contact" />
-                                    <label class="custom-control-label" for="dontknowCheck">Don't Know</label>
+                                    <input type="radio" class="custom-control-input" id="dontKnowCheck" name="contact" value="Don't Know" />
+                                    <label class="custom-control-label" for="dontKnowCheck">Don't Know</label>
                                 </div>
                             </div>
-                            <input type="button" name="next" class="next action-button" value="Submit" />
+                            <input type="submit" name="submit" class="next action-button" value="Submit" />
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
                         <!--end Contact-->
@@ -285,6 +298,8 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                             You Have Successfully Submitted
                                             the form!!
                                         </h6>
+
+                                        <?php print_r($_POST); ?>
                                     </div>
                                 </div>
                             </div>
