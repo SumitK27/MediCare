@@ -1,4 +1,4 @@
-<title>Admin's Dashboard</title>
+<title>Admin Dashboard</title>
 
 <?php
 require_once('./includes/imports.php');

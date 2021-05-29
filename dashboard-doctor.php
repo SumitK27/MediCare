@@ -30,7 +30,6 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Doc
                     <div class="col-12 sb-sidenav-footer p-3" style="width: 250px; height: 100px; ">
                         <div class="small">Logged in as:</div>
                         <?php
-                            $userInfo = $account->getInfo();
                             echo $userInfo['first_name'] . " " . $userInfo['last_name'];
                             ?>
                     </div>
