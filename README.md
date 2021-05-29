@@ -25,4 +25,8 @@
 ### Admin
 1. Admin A1
     email       : admin1@email.com
+<<<<<<< HEAD
     password    : Admin1
+=======
+    password    : Admin1
+>>>>>>> 51f56b226af21a01793b4c485216951539ee0717
