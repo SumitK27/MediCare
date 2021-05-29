@@ -16,13 +16,13 @@ p {
     font-weight: normal
 }
 
-#msform {
+#form {
     text-align: center;
     position: relative;
     margin-top: 20px
 }
 
-#msform fieldset {
+#form fieldset {
     background: white;
     border: 0 none;
     border-radius: 0.5rem;
@@ -39,12 +39,12 @@ p {
     text-align: left
 }
 
-#msform fieldset:not(:first-of-type) {
+#form fieldset:not(:first-of-type) {
     display: none
 }
 
-#msform input,
-#msform textarea {
+#form input,
+#form textarea {
     padding: 8px 15px 8px 15px;
     border: 1px solid #ccc;
     border-radius: 0px;
@@ -59,8 +59,8 @@ p {
     letter-spacing: 1px
 }
 
-#msform input:focus,
-#msform textarea:focus {
+#form input:focus,
+#form textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -68,7 +68,7 @@ p {
     outline-width: 0
 }
 
-#msform .action-button {
+#form .action-button {
     width: 100px;
     background: #1e6f5c;
     font-weight: bold;
@@ -81,12 +81,12 @@ p {
     float: right
 }
 
-#msform .action-button:hover,
-#msform .action-button:focus {
+#form .action-button:hover,
+#form .action-button:focus {
     background-color: #1e6f5c
 }
 
-#msform .action-button-previous {
+#form .action-button-previous {
     width: 100px;
     background: #616161;
     font-weight: bold;
@@ -99,8 +99,8 @@ p {
     float: right
 }
 
-#msform .action-button-previous:hover,
-#msform .action-button-previous:focus {
+#form .action-button-previous:hover,
+#form .action-button-previous:focus {
     background-color: #000000
 }
 
@@ -131,16 +131,12 @@ p {
     text-align: right
 }
 
-.fieldlabels {
-    color: gray;
-    text-align: left
-}
 
-#progressbar .active {
+#progress-bar .active {
     color: #1e6f5c
 }
 
-#progressbar li {
+#progress-bar li {
     list-style-type: none;
     font-size: 15px;
     width: 25%;

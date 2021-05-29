@@ -22,46 +22,26 @@
             return false;
         }
 
-        public function addUser($fn, $ln, $em, $ni, $rl) {
+        public function addUser($fn, $ln, $em, $adh, $mob, $addr, $dob, $gen, $ni, $rl) {
             $this->validateName($fn);
             $this->validateName($ln);
             $this->validateEmail($em);
+            $this->validateAadhaar($adh);
+            $this->validateContact($mob);
+            $this->validateAddress($addr);
+            $this->validateDOB($dob);
+            $this->validateGender($gen);
 
             if(empty($this->errorArray)) {
-                $query = $this->conn->prepare("INSERT INTO users(first_name, last_name, email) VALUES(:fn, :ln, :em)");
-                $query->bindValue(":fn", $fn);
-                $query->bindValue(":ln", $ln);
-                $query->bindValue(":em", $em);
-                $query->execute();
-                
+                $this->addPatient($fn, $ln, $em);
                 $lastId = $this->conn->lastInsertId();
                 $this->assignRole($lastId, $rl);
-                
-                $query = $this->conn->prepare("INSERT INTO user_added_by(nurse_id, user_id) VALUES(:ni, :ui)");
-                $query->bindValue(":ni", $ni);
-                $query->bindValue(":ui", $lastId);
-                $query->execute();
-
+                // $this->addPersonalDetails($lastId, $adh, $mob, $addr, $dob, $gen);
+                $this->userAddedBy($ni, $lastId);
                 return true;
             }
 
             return false;
-        }
-
-        private function insertUserDetails($fn, $ln, $em, $pw, $rl) {
-            $pw = hash("sha512", $pw);
-
-            $query = $this->conn->prepare("INSERT INTO users(first_name, last_name, email, password) VALUES(:fn, :ln, :em, :pw)");
-            $query->bindValue(":fn", $fn);
-            $query->bindValue(":ln", $ln);
-            $query->bindValue(":em", $em);
-            $query->bindValue(":pw", $pw);
-            $query->execute();
-            
-            $lastId = $this->conn->lastInsertId();
-            $this->assignRole($lastId, $rl);
-
-            return true;
         }
 
         /* Login */
@@ -79,7 +59,7 @@
             return false;
         }
         
-        // Login by Cookie
+        /* Login by Cookie */
         public function c_login($em, $pw) {
             $query = $this->conn->prepare("SELECT * FROM users WHERE email=:em AND password=:pw");
             $query->bindValue(":em", $em);
@@ -93,6 +73,7 @@
             return false;
         }
 
+        /* Retrieve User Details */
         public function getInfo() {
             if(isset($_SESSION["userLoggedIn"])) {
                 $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
@@ -141,26 +122,48 @@
             return $userInfo;
         }
 
-        public function addPatientPersonalData($id, $adh, $mob, $addr, $dob, $gen) {
-            $this->validateAadhaar($adh);
-            $this->validateContact($mob);
-            $this->validateAddress($addr);
-            $this->validateDOB($dob);
-            $this->validateGender($gen);
+        /* Adding User Info */
+        private function addPatient($fn, $ln, $em) {
+            $query = $this->conn->prepare("INSERT INTO users(first_name, last_name, email) VALUES(:fn, :ln, :em)");
+            $query->bindValue(":fn", $fn);
+            $query->bindValue(":ln", $ln);
+            $query->bindValue(":em", $em);
+            $query->execute();
+        }
 
-            if(empty($this->errorArray)) {
-                $query = $this->conn->prepare("INSERT INTO user_details, users VALUES (:id, :adh, :mob, :addr, :dob, :gen) WHERE users.user_id=:id");
-                $query->bindValue(":id", $id);
-                $query->bindValue(":adh", $adh);
-                $query->bindValue(":mob", $mob);
-                $query->bindValue(":addr", $addr);
-                $query->bindValue(":dob", $dob);
-                $query->bindValue(":gen", $gen);
-                $query->execute();
-                return;
-            }
+        private function userAddedBy($who, $whom) {
+            $query = $this->conn->prepare("INSERT INTO user_added_by(nurse_id, user_id) VALUES(:ni, :ui)");
+            $query->bindValue(":ni", $who);
+            $query->bindValue(":ui", $whom);
+            $query->execute();
+        }
 
-            return false;
+        private function insertUserDetails($fn, $ln, $em, $pw, $rl) {
+            $pw = hash("sha512", $pw);
+
+            $query = $this->conn->prepare("INSERT INTO users(first_name, last_name, email, password) VALUES(:fn, :ln, :em, :pw)");
+            $query->bindValue(":fn", $fn);
+            $query->bindValue(":ln", $ln);
+            $query->bindValue(":em", $em);
+            $query->bindValue(":pw", $pw);
+            $query->execute();
+            
+            $lastId = $this->conn->lastInsertId();
+            $this->assignRole($lastId, $rl);
+
+            return true;
+        }
+
+        private function addPersonalDetails($id, $adh, $mob, $addr, $dob, $gen) {
+            $query = $this->conn->prepare("INSERT INTO user_details, users VALUES (:id, :adh, :mob, :addr, :dob, :gen) WHERE users.user_id=:id");
+            $query->bindValue(":id", $id);
+            $query->bindValue(":adh", $adh);
+            $query->bindValue(":mob", $mob);
+            $query->bindValue(":addr", $addr);
+            $query->bindValue(":dob", $dob);
+            $query->bindValue(":gen", $gen);
+            $query->execute();
+            return;
         }
 
         public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $nausea, $chills, $quarantine, $severity, $date_added) {
@@ -185,6 +188,7 @@
             $query->execute();
         }
 
+        /* Updating Info */
         public function updateUser($id, $fn, $ln, $em, $ut) {
             $query = $this->conn->prepare("UPDATE users SET user_id=:id, first_name=:fn, last_name=:ln, email=:em WHERE user_id=:id");
             $query->bindValue(":id", $id);

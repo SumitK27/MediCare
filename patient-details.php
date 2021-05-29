@@ -3,6 +3,7 @@ require_once('./includes/imports.php');
 require_once('./includes/config.php');
 require_once('./includes/classes/Account.php');
 require_once('./includes/classes/Constants.php');
+require_once('./includes/classes/FormSanitizer.php');
 
 $account = new Account($conn);
 
@@ -11,21 +12,20 @@ $userInfo = $account->getUser($id);
 require_once('./includes/components/navbar.php');
 
 if (isset($_POST['submit'])) {
-    $aadhaar_no = FormSanitizer::sanitizeFormContact($_POST['aadhaarCard']);
+    $aadhaar_no = $_POST['aadhaarCard'] = FormSanitizer::sanitizeFormAadhaar($_POST['aadhaarCard']);
     $mobile_no = FormSanitizer::sanitizeFormContact($_POST['mobileNo']);
     $address = FormSanitizer::sanitizeFormString($_POST["address"]);
     $dob = FormSanitizer::sanitizeFormDOB($_POST["dob"]);
     $gender = "";
     $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
 
-
+    print_r($_POST);
     $contacted = "";
     $severity = "";
 }
 
 $getInfo = $account->getInfo();
 if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
-    // echo $_SESSION["userLoggedIn"];
 ?>
     <title>Patient Details</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
@@ -51,7 +51,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                     <p>Fill all form field to go to next step</p>
                     <!--End Patients Info-->
 
-                    <form id="msform" action="print.php" method="POST">
+                    <form id="form" method="POST">
                         <!--Start Progress bar-->
                         <div class="progress">
                             <div class="progress-bar progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -73,9 +73,9 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                         <h2 class="steps">Step 1 - 5</h2>
                                     </div>
                                 </div>
-                                <label class="fieldlabels">Enter Aadhaar Card Number:
+                                <label>Enter Aadhaar Card Number:
                                 </label>
-                                <input type="text" data-type="aadhaar-number" name="aadhaarCard" placeholder="Aadhaar Card Number" maxlength="12" required />
+                                <input type="text" data-type="aadhaar-number" name="aadhaarCard" placeholder="Aadhaar Card Number" maxlength="14" required />
                             </div>
                             <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
@@ -94,18 +94,17 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                         <h2 class="steps">Step 2 - 5</h2>
                                     </div>
                                 </div>
-                                <label class="fieldlabels">Name:</label>
+                                <label>Name:</label>
                                 <input type="text" name="name" placeholder="Full Name" value="<?php echo $userInfo['first_name'] . ' ' . $userInfo['last_name']; ?>" />
-                                <label class="fieldlabels">Email:</label>
+                                <label>Email:</label>
                                 <input type="text" name="email" placeholder="Email ID" value="<?php echo $userInfo['email']; ?>" />
-                                <label class="fieldlabels">Mobile No.:
-                                </label>
+                                <label>Mobile No.:</label>
                                 <input type="text" data-type="mobile-no" name="mobileNo" placeholder="Mobile Number" maxlength="10" />
-                                <label class="fieldlabels">Address:</label>
+                                <label>Address:</label>
                                 <textarea name="address" rows="3" placeholder="Address"></textarea>
-                                <label class="fieldlabels">Date of Birth:</label>
-                                <input type="date" name="birthday" placeholder="DOB" />
-                                <label class="fieldlabels">Gender:</label>
+                                <label>Date of Birth:</label>
+                                <input type="date" name="dob" placeholder="DOB" />
+                                <label>Gender:</label>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="maleCheck" name="gender" value="Male" />
                                     <label class="custom-control-label" for="maleCheck">Male</label>
@@ -236,7 +235,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                         <h2 class="steps">Step 4 - 5</h2>
                                     </div>
                                 </div>
-                                <label class="fieldlabels">Severity of your selected
+                                <label>Severity of your selected
                                     Symptoms:</label>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="mildCheck" name="severity" value="Mild" />
@@ -258,7 +257,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     <label class="custom-control-label" for="noneCheck">None</label>
                                 </div>
 
-                                <label class="fieldlabels">Got in contact with someone tested
+                                <label>Got in contact with someone tested
                                     positive</label>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" id="yesCheck" name="contact" value="Yes" />

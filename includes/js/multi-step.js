@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('[data-type="adhaar-number"]').keyup(function() {
+    $('[data-type="aadhaar-number"]').keyup(function() {
         var value = $(this).val();
         value = value.replace(/\D/g, "").split(/(?:([\d]{4}))/g).filter(s => s.length > 0).join("-");
         $(this).val(value);
@@ -11,7 +11,7 @@ $(document).ready(function(){
         $(this).val(value);
       });
       
-    var current_fs, next_fs, previous_fs; //fieldsets
+    var current_fs, next_fs, previous_fs; //fieldset
     var opacity;
     var current = 1;
     var steps = $("fieldset").length;
@@ -24,14 +24,14 @@ $(document).ready(function(){
     next_fs = $(this).parent().next();
     
     //Add Class Active
-    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    $("#progress-bar li").eq($("fieldset").index(next_fs)).addClass("active");
     
     //show the next fieldset
     next_fs.show();
     //hide the current fieldset with style
     current_fs.animate({opacity: 0}, {
     step: function(now) {
-    // for making fielset appear animation
+    // for making fieldset appear animation
     opacity = 1 - now;
     
     current_fs.css({
@@ -51,7 +51,7 @@ $(document).ready(function(){
     previous_fs = $(this).parent().prev();
     
     //Remove class active
-    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+    $("#progress-bar li").eq($("fieldset").index(current_fs)).removeClass("active");
     
     //show the previous fieldset
     previous_fs.show();
@@ -59,7 +59,7 @@ $(document).ready(function(){
     //hide the current fieldset with style
     current_fs.animate({opacity: 0}, {
     step: function(now) {
-    // for making fielset appear animation
+    // for making fieldset appear animation
     opacity = 1 - now;
     
     current_fs.css({

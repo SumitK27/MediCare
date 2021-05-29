@@ -25,6 +25,13 @@
             return $inputText;
         }
 
+        public static function sanitizeFormAadhaar($inputText) {
+            // $inputText = intval($inputText);
+            // $inputText = strip_tags($inputText);
+            $inputText = str_replace("-", "", $inputText);
+            return $inputText;
+        }
+
         public static function sanitizeFormEmail($inputText) {
             $inputText = strip_tags($inputText);
             $inputText = str_replace(" ", "", $inputText);
