@@ -13,12 +13,6 @@
             <li class="nav-item <?php echo $curPageName == 'index.php'? 'active' : ''; ?>">
                 <a class="nav-link mr-2" href="./index.php">Home</a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link mr-2" href="#Department">Department</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-2" href="#Services">Services</a>
-            </li> -->
             <li class="nav-item <?php echo $curPageName == 'about.php'? 'active' : ''; ?>">
                 <a class="nav-link mr-2" href="./about.php">About</a>
             </li>
@@ -34,18 +28,7 @@
                         <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle z-depth-0" alt="avatar image" style="width: 36px; height: 36px;">
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="avatarDropdown">
-                        <a class="dropdown-item" href="./dashboard.php">My Profile</a>
-                        <a class="dropdown-item" href="<?php 
-                            if ($userInfo['role_name'] == 'Admin') {
-                                echo './dashboard-admin.php'; 
-                            } elseif ($userInfo['role_name'] == 'Nurse') {
-                                echo './dashboard-nurse.php';
-                            } elseif ($userInfo['role_name'] == 'Doctor') {
-                                echo './dashboard-doctor.php';
-                            } elseif ($userInfo['role_name'] == 'Patient') {
-                                echo './dashboard.php';
-                            }
-                        ?>">Dashboard</a>
+                        <a class="dropdown-item" href="./dashboard.php">Dashboard</a>
                         <a class="dropdown-item" href="./logout.php">Log out</a>
                     </div>
                 </li>
