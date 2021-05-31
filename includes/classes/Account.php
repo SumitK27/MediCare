@@ -30,13 +30,14 @@
             $this->validateContact($mob);
             $this->validateAddress($addr);
             $this->validateDOB($dob);
-            $this->validateGender($gen);
+            // $this->validateGender($gen);
 
             if(empty($this->errorArray)) {
                 $this->addPatient($fn, $ln, $em);
                 $lastId = $this->conn->lastInsertId();
+                echo $lastId;
                 $this->assignRole($lastId, $rl);
-                // $this->addPersonalDetails($lastId, $adh, $mob, $addr, $dob, $gen);
+                $this->addPersonalDetails($lastId, $adh, $mob, $addr, $dob, $gen);
                 $this->userAddedBy($ni, $lastId);
                 return true;
             }
@@ -155,7 +156,7 @@
         }
 
         private function addPersonalDetails($id, $adh, $mob, $addr, $dob, $gen) {
-            $query = $this->conn->prepare("INSERT INTO user_details, users VALUES (:id, :adh, :mob, :addr, :dob, :gen) WHERE users.user_id=:id");
+            $query = $this->conn->prepare("INSERT INTO user_details VALUES (:id, :adh, :mob, :addr, :dob, :gen)");
             $query->bindValue(":id", $id);
             $query->bindValue(":adh", $adh);
             $query->bindValue(":mob", $mob);
@@ -166,8 +167,8 @@
             return;
         }
 
-        public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $nausea, $chills, $quarantine, $severity, $date_added) {
-            $query = $this->conn->prepare("INSERT INTO user_symptoms, users VALUES (:id, :fever, :breathing, :cough, :nose, :sense, :throat, :cont_pos, :pos, :travelled, :tired, :nausea, :chills, :quarantine, :severity, :date_added) WHERE users.user_id=:id");
+        public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $diarrhea, $chills, $quarantine, $severity) {
+            $query = $this->conn->prepare("INSERT INTO user_symptoms VALUES (:id, :fever, :breathing, :cough, :nose, :sense, :throat, :cont_pos, :pos, :travelled, :tired, :diarrhea, :chills, :quarantine, :severity)");
             
             $query->bindValue(":id", $id);
             $query->bindValue(":fever", $fev);
@@ -180,11 +181,10 @@
             $query->bindValue(":pos", $pos);
             $query->bindValue(":travelled", $travelled);
             $query->bindValue(":tired", $tired);
-            $query->bindValue(":nausea", $nausea);
+            $query->bindValue(":diarrhea", $diarrhea);
             $query->bindValue(":chills", $chills);
             $query->bindValue(":quarantine", $quarantine);
             $query->bindValue(":severity", $severity);
-            $query->bindValue(":date_added", $date_added);
             $query->execute();
         }
 
@@ -262,7 +262,7 @@
         }
 
         private function validateAddress($addr) {
-            if (strlen($addr) <= 5 || strlen(($addr) >= 80)) {
+            if (strlen($addr) <= 5 || strlen($addr) >= 80) {
                 array_push($this->errorArray, Constants::$addressInvalid);
             }
         }
@@ -276,6 +276,13 @@
         private function validateAadhaar($adn) {
             if (strlen($adn) != 12) {
                 array_push($this->errorArray, Constants::$aadhaarInvalid);
+            }
+            $query = $this->conn->prepare("SELECT * FROM user_details WHERE aadhaar_no=:adn");
+            $query->bindValue(":adn", $adn);
+            $query->execute();
+
+            if ($query->rowCount() != 0) {
+                array_push($this->errorArray, Constants::$aadhaarTaken);
             }
         }
 
