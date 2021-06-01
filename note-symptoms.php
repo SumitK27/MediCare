@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     $quarantine = yesOrNo($_POST['quarantine']);
     $severity = $_POST['severity'];
 
-    $success = $account->addMedicalRecords($id, $fever, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tiredness, $diarrhea, $chills, $quarantine, $severity);
+    $success = $account->addMedicalRecords($id, $fever, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tiredness, $diarrhea, $chills, $quarantine);
 }
 
 function yesOrNo($value)
@@ -320,7 +320,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="dontKnowCheck" name="contact" value="Don't Know" />
+                                    <input type="radio" class="custom-control-input" id="dontKnowCheck" name="gotInContact" value="No" />
                                     <label class="custom-control-label" for="dontKnowCheck">Don't Know</label>
                                 </div>
                             </div>

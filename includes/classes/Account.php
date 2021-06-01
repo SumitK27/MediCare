@@ -77,7 +77,7 @@
         /* Retrieve User Details */
         public function getInfo() {
             if(isset($_SESSION["userLoggedIn"])) {
-                $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
+                $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name FROM users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
                 $query->bindValue(":em", $_SESSION["userLoggedIn"]);
                 $query->execute();
                 $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -88,12 +88,19 @@
         }
 
         public function getUser($id) {
-            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name from users, user_role, roles WHERE users.user_id=:id AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
+            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name, user_details.aadhaar_no, user_details.mobile, user_details.address, user_details.date_of_birth, user_details.gender FROM users, user_role, roles, user_details WHERE users.user_id=:id AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id AND user_details.user_id = users.user_id");
             $query->bindValue(":id", $id);
             $query->execute();
             $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
-            //print_r($userInfo);
             return $userInfo[0];
+        }
+
+        public function getUserSymptoms($id) {
+            $query = $this->conn->prepare("SELECT * FROM user_symptoms WHERE user_id=:id ORDER BY date_added DESC;");
+            $query->bindValue(":id", $id);
+            $query->execute();
+            $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $userInfo;
         }
 
         public function getUserType($rl) {
@@ -167,7 +174,7 @@
             return;
         }
 
-        public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $diarrhea, $chills, $quarantine, $severity) {
+        public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $diarrhea, $chills, $quarantine) {
             $query = $this->conn->prepare("INSERT INTO user_symptoms VALUES (:id, :fever, :breathing, :cough, :nose, :sense, :throat, :cont_pos, :pos, :travelled, :tired, :diarrhea, :chills, :quarantine, NOW())");
             
             $query->bindValue(":id", $id);
