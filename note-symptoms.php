@@ -96,7 +96,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="feverNo" name="fever">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="feverNo" name="fever">
                                         <label class="custom-control-label" for="feverNo">No</label>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="difficultyBreathingNo" name="difficultyBreathing">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="difficultyBreathingNo" name="difficultyBreathing">
                                         <label class="custom-control-label" for="difficultyBreathingNo">No</label>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="dryCoughNo" name="dryCough">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="dryCoughNo" name="dryCough">
                                         <label class="custom-control-label" for="dryCoughNo">No</label>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="nasalCongestionNo" name="nasalCongestion">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="nasalCongestionNo" name="nasalCongestion">
                                         <label class="custom-control-label" for="nasalCongestionNo">No</label>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="lostSenseNo" name="lostSense">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="lostSenseNo" name="lostSense">
                                         <label class="custom-control-label" for="lostSenseNo">No</label>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="soreThroatNo" name="soreThroat">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="soreThroatNo" name="soreThroat">
                                         <label class="custom-control-label" for="soreThroatNo">No</label>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="isPositiveNo" name="isPositive">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="isPositiveNo" name="isPositive">
                                         <label class="custom-control-label" for="isPositiveNo">No</label>
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="travelledNo" name="travelled">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="travelledNo" name="travelled">
                                         <label class="custom-control-label" for="travelledNo">No</label>
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="tirednessNo" name="tiredness">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="tirednessNo" name="tiredness">
                                         <label class="custom-control-label" for="tirednessNo">No</label>
                                     </div>
                                 </div>
@@ -231,7 +231,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="diarrheaNo" name="diarrhea">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="diarrheaNo" name="diarrhea">
                                         <label class="custom-control-label" for="diarrheaNo">No</label>
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="chillsNo" name="chills">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="chillsNo" name="chills">
                                         <label class="custom-control-label" for="chillsNo">No</label>
                                     </div>
                                 </div>
@@ -261,7 +261,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     </div>
 
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" id="quarantineNo" name="quarantine">
+                                        <input type="radio" class="custom-control-input" value="No" checked id="quarantineNo" name="quarantine">
                                         <label class="custom-control-label" for="quarantineNo">No</label>
                                     </div>
                                 </div>
@@ -315,7 +315,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                     <label class="custom-control-label" for="yesCheck">Yes</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="noCheck" name="gotInContact" value="No" />
+                                    <input type="radio" class="custom-control-input" id="noCheck" name="gotInContact" value="No" checked />
                                     <label class="custom-control-label" for="noCheck">No</label>
                                 </div>
 

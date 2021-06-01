@@ -168,7 +168,7 @@
         }
 
         public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $diarrhea, $chills, $quarantine, $severity) {
-            $query = $this->conn->prepare("INSERT INTO user_symptoms VALUES (:id, :fever, :breathing, :cough, :nose, :sense, :throat, :cont_pos, :pos, :travelled, :tired, :diarrhea, :chills, :quarantine, :severity)");
+            $query = $this->conn->prepare("INSERT INTO user_symptoms VALUES (:id, :fever, :breathing, :cough, :nose, :sense, :throat, :cont_pos, :pos, :travelled, :tired, :diarrhea, :chills, :quarantine, NOW())");
             
             $query->bindValue(":id", $id);
             $query->bindValue(":fever", $fev);
@@ -184,7 +184,6 @@
             $query->bindValue(":diarrhea", $diarrhea);
             $query->bindValue(":chills", $chills);
             $query->bindValue(":quarantine", $quarantine);
-            $query->bindValue(":severity", $severity);
             $query->execute();
         }
 
