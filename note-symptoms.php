@@ -39,7 +39,7 @@ function yesOrNo($value)
 }
 
 $getInfo = $account->getInfo();
-if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
+if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor' || 'Patient') {
 ?>
     <title>Patient Details</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />

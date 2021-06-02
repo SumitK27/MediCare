@@ -63,7 +63,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                                 <th scope='col'>Fever</th>
                                 <th scope='col'>Trouble Breathing</th>
                                 <th scope='col'>Cough</th>
-                                <th scope='col'>Nosal Congestion/Running</th>
+                                <th scope='col'>Nasal Congestion/Running</th>
                                 <th scope='col'>Lost Sense</th>
                                 <th scope='col'>Sore Throat</th>
                                 <th scope='col'>Contacted COVID Positive</th>

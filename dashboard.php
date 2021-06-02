@@ -835,7 +835,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                         <div class="col-12 nav flex-column nav-pills text-white" id="p-pills-tab" role="tablist">
                             <a class="nav-link active text-white mb-4" id="p-pills-profile-tab" data-toggle="pill" href="#p-pills-profile" role="tab" aria-controls="p-pills-profile" aria-controls="p-pills-profile" aria-selected="true"><i class="fa fa-user-circle mr-3"></i>Home</a>
 
-                            <a class="nav-link text-white mb-4" id="p-pills-patient-tab" data-toggle="pill" href="#p-pills-patient" role="tab" aria-controls="p-pills-patient" aria-controls="p-pills-patient" aria-selected="true"><i class="fa fa-user mr-3"></i>Patients</a>
+                            <a class="nav-link text-white mb-4" id="p-pills-patient-tab" data-toggle="pill" href="#p-pills-patient" role="tab" aria-controls="p-pills-patient" aria-controls="p-pills-patient" aria-selected="true"><i class="fa fa-user mr-3"></i>My Records</a>
 
                             <a class="nav-link text-white mb-4" id="p-pills-nurse-tab" data-toggle="pill" href="#p-pills-nurse" role="tab" aria-controls="p-pills-patient" aria-controls="p-pills-nurse" aria-selected="true"><i class="fas fa-notes-medical mr-3"></i>Report</a>
                         </div>
@@ -945,24 +945,29 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                     </div>
                 </div>
                 <div class="tab-pane fade show" id="p-pills-patient" role="tabpanel" aria-labelledby="p-pills-patient-tab">
-                    <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fa fa-user-plus"></i>Add user</button>
+                    <button class="btn btn-primary float-right" onclick="location.href='note-symptoms.php?user_id=<?php echo $userInfo['user_id'] ?>'"><i class="fa fa-user-plus"></i>Add Symptoms</button>
                     <br><br>
                     <?php
-                    $rows = $account->getUserTypeCreatedByMe($getInfo['user_id'], "Patient");
-                    /* Rows > 0 */
-                    if ($rows > 0) {
+                    $rows = $account->getUserSymptoms($userInfo['user_id']);
+                    if (count($rows) > 0) {
                     ?>
-
-                        <table class="table table-striped table-fluid myTable">
+                        <table class="table table-responsive table-striped table-fluid myTable">
                             <thead class='thead-dark'>
                                 <tr>
-                                    <th scope='col'>ID</th>
-                                    <th scope='col'>First Name</th>
-                                    <th scope='col'>Last Name</th>
-                                    <th scope='col'>Email</th>
-                                    <th scope='col'>User Type</th>
-                                    <th scope='col'>More Details</th>
-                                    <th scope='col'>Edit</th>
+                                    <th scope='col'>Fever</th>
+                                    <th scope='col'>Trouble Breathing</th>
+                                    <th scope='col'>Cough</th>
+                                    <th scope='col'>Nasal Congestion/Running</th>
+                                    <th scope='col'>Lost Sense</th>
+                                    <th scope='col'>Sore Throat</th>
+                                    <th scope='col'>Contacted COVID Positive</th>
+                                    <th scope='col'>Positive</th>
+                                    <th scope='col'>Travelled</th>
+                                    <th scope='col'>Tiredness</th>
+                                    <th scope='col'>Diarrhea</th>
+                                    <th scope='col'>Chills</th>
+                                    <th scope='col'>Told to be Quarantine</th>
+                                    <th scope='col'>Tested At</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -970,24 +975,20 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                 foreach ($rows as $row) {
                                 ?>
                                     <tr>
-                                        <th scope='row'> <?php echo $row['user_id'] ?> </th>
-                                        <th scope='row'> <?php echo $row['first_name'] ?> </th>
-                                        <th scope='row'> <?php echo $row['last_name'] ?> </th>
-                                        <th scope='row'> <?php echo $row['email'] ?> </th>
-                                        <th scope='row'> <?php echo $row['role_name'] ?> </th>
-                                        <th scope='row' class="text-center">
-                                            <a href='user-details.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-id-card-alt" aria-hidden="true"></i></a>
-                                        </th>
-                                        <th scope='row'>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
-                                                </div>
-                                                <div class="col">
-                                                    <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash"></i></a>
-                                                </div>
-                                            </div>
-                                        </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_fever'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_trouble_breathing'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_cough'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_nosal_congest_running'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_lost_sense'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_sore_throat'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['had_contact_with_positive'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['is_positive'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_travelled'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['felt_tired'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['have_nausea_diarrhea'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_chills'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_told_quarantine'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <?php echo $row['date_added']; ?> </th>
                                     </tr>
                                 <?php
                                 }
@@ -997,7 +998,8 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                     } else {
                     ?>
                         <strong>
-                            <span class='alert alert-danger row justify-content-center align-items-center'>0 Results<span>
+                            <span class='alert alert-danger row justify-content-center align-items-center'>0
+                                Results<span>
                         </strong>
                     <?php
                     }
