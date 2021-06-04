@@ -829,7 +829,6 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                             <div class="small">Logged in as:</div>
                             <?php
                             echo $userInfo['first_name'] . " " . $userInfo['last_name'];
-                            echo $userInfo["role_name"];
                             ?>
                         </div>
                         <div class="col-12 nav flex-column nav-pills text-white" id="p-pills-tab" role="tablist">
@@ -978,7 +977,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_fever'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_trouble_breathing'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_cough'] == 0 ? "checked" : ""; ?> /> </th>
-                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_nosal_congest_running'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_nasal_congest_running'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_lost_sense'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_sore_throat'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['had_contact_with_positive'] == 0 ? "checked" : ""; ?> /> </th>
