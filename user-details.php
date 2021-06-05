@@ -10,11 +10,24 @@ $id = $_GET["user_id"];
 $userInfo = $account->getUser($id);
 require_once('./includes/components/navbar.php');
 
+function iconColors($element) {
+    if ($element == 0) {
+        return 'text-dark';
+    } else if ($element == 1) {
+        return 'text-info';
+    } else if ($element == 2) {
+        return 'text-warning';
+    } else {
+        return 'text-danger';
+    }
+}
+
 $getInfo = $account->getInfo();
 if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
     // echo $_SESSION["userLoggedIn"];
 ?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="./includes/css/style.user-details.css">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -81,20 +94,20 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                             foreach ($rows as $row) {
                             ?>
                                 <tr>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_fever'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_trouble_breathing'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_cough'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_nasal_congest_running'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_lost_sense'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_sore_throat'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['had_contact_with_positive'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'><button class="form-control"><i class="fa fa-thermometer-half icons <?php echo iconColors($row['fever_s']) ?>" aria-hidden="true"></i></button></th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['trouble_breathing'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['cough'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['congestion'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['sense_loss'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['sore_throat'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['contact_positive'] == 0 ? "checked" : ""; ?> /> </th>
                                     <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['is_positive'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_travelled'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['felt_tired'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['have_nausea_diarrhea'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_chills'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['has_told_quarantine'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <?php echo $row['date_added']; ?> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['travelled'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['tiredness'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['diarrhea'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['chills'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['quarantine'] == 0 ? "checked" : ""; ?> /> </th>
+                                    <th scope='row'> <?php echo $row['date_tested']; ?> </th>
                                 </tr>
                             <?php
                             }

@@ -2,8 +2,6 @@
 require_once('./includes/imports.php');
 require_once('./includes/config.php');
 require_once('./includes/classes/Account.php');
-require_once('./includes/classes/Constants.php');
-require_once('./includes/classes/FormSanitizer.php');
 
 $account = new Account($conn);
 
@@ -13,21 +11,90 @@ require_once('./includes/components/navbar.php');
 
 if (isset($_POST['submit'])) {
     $fever = yesOrNo($_POST['fever']);
-    $breath = yesOrNo($_POST['difficultyBreathing']);
-    $cough = yesOrNo($_POST['dryCough']);
-    $nose = yesOrNo($_POST['nasalCongestion']);
-    $sense = yesOrNo($_POST['lostSense']);
-    $throat = yesOrNo($_POST['soreThroat']);
-    $cont_pos = yesOrNo($_POST['gotInContact']);
-    $pos = yesOrNo($_POST['isPositive']);
-    $travelled = yesOrNo($_POST['travelled']);
-    $tiredness = yesOrNo($_POST['tiredness']);
-    $diarrhea = yesOrNo($_POST['diarrhea']);
-    $chills = yesOrNo($_POST['chills']);
-    $quarantine = yesOrNo($_POST['quarantine']);
-    $severity = $_POST['severity'];
+    $fever_s = $_POST['fever_s'];
 
-    $success = $account->addMedicalRecords($id, $fever, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tiredness, $diarrhea, $chills, $quarantine);
+    $cough = yesOrNo($_POST['cough']);
+    $cough_s = $_POST['cough_s'];
+
+    $tiredness = yesOrNo($_POST['tiredness']);
+    $tiredness_s = $_POST['tiredness_s'];
+
+    $chest_pain = yesOrNo($_POST['chest_pain']);
+    $chest_pain_s = $_POST['chest_pain_s'];
+
+    $head_ache = yesOrNo($_POST['head_ache']);
+    $head_ache_s = $_POST['head_ache_s'];
+
+    $stomach_ache = yesOrNo($_POST['stomach_ache']);
+    $stomach_ache_s = $_POST['stomach_ache_s'];
+
+    $kidney_failure = yesOrNo($_POST['kidney_failure']);
+
+    $heart_problem = yesOrNo($_POST['heart_problem']);
+    $heart_problem_s = $_POST['heart_problem_s'];
+
+    $diabetes = yesOrNo($_POST['diabetes']);
+    $diabetes_s = $_POST['diabetes_s'];
+
+    $less_oxygen_level = yesOrNo($_POST['less_oxygen_level']);
+    $less_oxygen_level_s = $_POST['less_oxygen_level_s'];
+
+    $malignancy_cancer = yesOrNo($_POST['malignancy_cancer']);
+    $malignancy_cancer_s = $_POST['malignancy_cancer_s'];
+
+    $hypertension = yesOrNo($_POST['hypertension']);
+    $hypertension_s = $_POST['hypertension_s'];
+
+    $liver_disease = yesOrNo($_POST['liver_disease']);
+    $liver_disease_s = $_POST['liver_disease_s'];
+
+    $immunocompromised_condition = yesOrNo($_POST['immunocompromised_condition']);
+    $immunocompromised_condition_s = $_POST['immunocompromised_condition_s'];
+
+    $vomiting = yesOrNo($_POST['vomiting']);
+    $vomiting_s = $_POST['vomiting_s'];
+
+    $consume_steroids = yesOrNo($_POST['consume_steroids']);
+    $consume_steroids_s = $_POST['consume_steroids_s'];
+
+    $sore_throat = yesOrNo($_POST['sore_throat']);
+    $sore_throat_s = $_POST['sore_throat_s'];
+
+    $diarrhea = yesOrNo($_POST['diarrhea']);
+    $diarrhea_s = $_POST['diarrhea_s'];
+
+    $congestion = yesOrNo($_POST['congestion']);
+    $congestion_s = $_POST['congestion_s'];
+
+    $sense_loss = yesOrNo($_POST['sense_loss']);
+    $sense_loss_s = $_POST['sense_loss_s'];
+
+    $skin_rash_discoloration = yesOrNo($_POST['skin_rash_discoloration']);
+    $skin_rash_discoloration_s = $_POST['skin_rash_discoloration_s'];
+
+    $trouble_breathing = yesOrNo($_POST['trouble_breathing']);
+    $trouble_breathing_s = $_POST['trouble_breathing_s'];
+
+    $contact_positive = yesOrNo($_POST['contact_positive']);
+    $contact_positive_s = $_POST['contact_positive_s'];
+
+    $is_positive = yesOrNo($_POST['is_positive']);
+    $is_positive_s = $_POST['is_positive_s'];
+
+    $is_vaccinated = yesOrNo($_POST['is_vaccinated']);
+    $is_vaccinated_d = $_POST['is_vaccinated_d'];
+
+    $is_vaccinated_2 = yesOrNo($_POST['is_vaccinated_2']);
+    $is_vaccinated_2_d = $_POST['is_vaccinated_2_d'];
+
+    $travelled = yesOrNo($_POST['travelled']);
+
+    $chills = yesOrNo($_POST['chills']);
+    $chills_s = $_POST['chills_s'];
+
+    $quarantine = yesOrNo($_POST['quarantine']);
+
+    $success = $account->addMedicalRecords($id, $fever, $fever_s, $cough, $cough_s, $tiredness, $tiredness_s, $chest_pain, $chest_pain_s, $head_ache, $head_ache_s, $stomach_ache, $stomach_ache_s, $kidney_failure, $heart_problem, $heart_problem_s, $diabetes, $diabetes_s, $less_oxygen_level, $less_oxygen_level_s, $malignancy_cancer, $malignancy_cancer_s, $hypertension, $hypertension_s, $liver_disease, $liver_disease_s, $immunocompromised_condition, $immunocompromised_condition_s, $vomiting, $vomiting_s, $consume_steroids, $sore_throat, $sore_throat_s, $diarrhea, $diarrhea_s, $congestion, $congestion_s, $sense_loss, $sense_loss_s, $skin_rash_discoloration, $skin_rash_discoloration_s, $trouble_breathing, $trouble_breathing_s, $contact_positive, $is_positive, $is_vaccinated, $is_vaccinated_d, $is_vaccinated_2, $is_vaccinated_2_d, $travelled, $chills, $chills_s, $quarantine);
 }
 
 function yesOrNo($value)
@@ -49,6 +116,8 @@ if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nur
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="./includes/css/style.details.css" />
     <script src="./includes/js/multi-step.js"></script>
+
+    <script src="./includes/js/symptoms.js"></script>
 
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -76,258 +145,57 @@ if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nur
 
                         <!--Symptoms fieldset -->
                         <fieldset>
-                            <div class="form-card">
+                            <div class="form-card symptoms-1">
                                 <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">
-                                            List of Symptoms:
+                                            Symptoms:
                                         </h2>
                                     </div>
                                     <div class="col-5">
-                                        <h2 class="steps">Step 1 - 2</h2>
+                                        <h2 class="steps">Step 1 - 3</h2>
                                     </div>
                                 </div>
-                                <!--fever row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Fever:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="feverYes" name="fever">
-                                        <label class="custom-control-label" for="feverYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="feverNo" name="fever">
-                                        <label class="custom-control-label" for="feverNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End fever row-->
-
-                                <!--Difficulty in Breathing row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Difficulty in Breathing:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="difficultyBreathingYes" name="difficultyBreathing">
-                                        <label class="custom-control-label" for="difficultyBreathingYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="difficultyBreathingNo" name="difficultyBreathing">
-                                        <label class="custom-control-label" for="difficultyBreathingNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Difficulty in Breathing row-->
-
-                                <!--Dry Cough row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Dry Cough:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="dryCoughYes" name="dryCough">
-                                        <label class="custom-control-label" for="dryCoughYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="dryCoughNo" name="dryCough">
-                                        <label class="custom-control-label" for="dryCoughNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Dry Cough row-->
-
-                                <!--Nasal Congestion/Running row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Nasal Congestion/Running:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="nasalCongestionYes" name="nasalCongestion">
-                                        <label class="custom-control-label" for="nasalCongestionYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="nasalCongestionNo" name="nasalCongestion">
-                                        <label class="custom-control-label" for="nasalCongestionNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Nasal Congestion row-->
-
-                                <!--Lost Sense row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Lost Sense:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="lostSenseYes" name="lostSense">
-                                        <label class="custom-control-label" for="lostSenseYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="lostSenseNo" name="lostSense">
-                                        <label class="custom-control-label" for="lostSenseNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Lost Sense row-->
-
-                                <!--Sore Throat row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Sore Throat:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="soreThroatYes" name="soreThroat">
-                                        <label class="custom-control-label" for="soreThroatYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="soreThroatNo" name="soreThroat">
-                                        <label class="custom-control-label" for="soreThroatNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Sore Throat row-->
-
-                                <!--Is Positive row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Are you tested as Positive:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="isPositiveYes" name="isPositive">
-                                        <label class="custom-control-label" for="isPositiveYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="isPositiveNo" name="isPositive">
-                                        <label class="custom-control-label" for="isPositiveNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Is Positive row-->
-
-                                <!--Travelled row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Travelled:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="travelledYes" name="travelled">
-                                        <label class="custom-control-label" for="travelledYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="travelledNo" name="travelled">
-                                        <label class="custom-control-label" for="travelledNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Travelled row-->
-
-                                <!--Tiredness row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Tiredness:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="tirednessYes" name="tiredness">
-                                        <label class="custom-control-label" for="tirednessYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="tirednessNo" name="tiredness">
-                                        <label class="custom-control-label" for="tirednessNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Tiredness row-->
-
-                                <!--Diarrhea row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Diarrhea:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="diarrheaYes" name="diarrhea">
-                                        <label class="custom-control-label" for="diarrheaYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="diarrheaNo" name="diarrhea">
-                                        <label class="custom-control-label" for="diarrheaNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Diarrhea row-->
-
-                                <!--Chills row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Chills:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="chillsYes" name="chills">
-                                        <label class="custom-control-label" for="chillsYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="chillsNo" name="chills">
-                                        <label class="custom-control-label" for="chillsNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Chills row-->
-
-                                <!--Quarantine row-->
-                                <div>
-                                    <label class="col-md-6 radioLabel">Told to be Quarantine:</label>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="Yes" id="quarantineYes" name="quarantine">
-                                        <label class="custom-control-label" for="quarantineYes">Yes</label>
-                                    </div>
-
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" class="custom-control-input" value="No" checked id="quarantineNo" name="quarantine">
-                                        <label class="custom-control-label" for="quarantineNo">No</label>
-                                    </div>
-                                </div>
-                                <!--End Quarantine row-->
                             </div>
-
+                            <input type="button" name="next" class="next action-button" value="Next" />
+                        </fieldset>
+                        <!--end Symptoms fieldset -->
+                        <!--Symptoms fieldset -->
+                        <fieldset>
+                            <div class="form-card symptoms-2">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">
+                                            Other Diseases:
+                                        </h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 2 - 3</h2>
+                                    </div>
+                                </div>
+                            </div>
                             <input type="button" name="next" class="next action-button" value="Next" />
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
                         <!--end Symptoms fieldset -->
-
-                        <!--start Contact-->
+                        <!--Symptoms fieldset -->
                         <fieldset>
-                            <div class="form-card">
+                            <div class="form-card symptoms-3">
                                 <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">
-                                            Severity & Contact:
+                                            Contact & Vaccine:
                                         </h2>
                                     </div>
                                     <div class="col-5">
-                                        <h2 class="steps">Step 2 - 2</h2>
+                                        <h2 class="steps">Step 3 - 3</h2>
                                     </div>
-                                </div>
-                                <label>Severity of your selected
-                                    Symptoms:</label>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="mildCheck" name="severity" value="Mild" />
-                                    <label class="custom-control-label" for="mildCheck">Mild</label>
-                                </div>
-
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="moderateCheck" name="severity" value="Moderate" />
-                                    <label class="custom-control-label" for="moderateCheck">Moderate</label>
-                                </div>
-
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="severeCheck" name="severity" value="Sever" />
-                                    <label class="custom-control-label" for="severeCheck">Severe</label>
-                                </div>
-
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="noneCheck" name="severity" value="None" />
-                                    <label class="custom-control-label" for="noneCheck">None</label>
-                                </div>
-
-                                <label>Got in contact with someone tested
-                                    positive</label>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="yesCheck" name="gotInContact" value="Yes" />
-                                    <label class="custom-control-label" for="yesCheck">Yes</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="noCheck" name="gotInContact" value="No" checked />
-                                    <label class="custom-control-label" for="noCheck">No</label>
-                                </div>
-
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="dontKnowCheck" name="gotInContact" value="No" />
-                                    <label class="custom-control-label" for="dontKnowCheck">Don't Know</label>
                                 </div>
                             </div>
                             <input type="submit" name="submit" class="next action-button" value="Submit" />
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
-                        <!--end Contact-->
+                        <!--end Symptoms fieldset -->
                     </form>
                 </div>
             </div>
@@ -336,7 +204,7 @@ if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nur
 <?php
 } else {
     //  if not logged in
-    header("Location: login.php");
+    header("Location: ../login.php");
 }
-require_once('./includes/importsAfter.php');
+require_once('../includes/importsAfter.php');
 ?>

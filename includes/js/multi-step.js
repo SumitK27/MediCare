@@ -1,16 +1,4 @@
-$(document).ready(function(){
-    $('[data-type="aadhaar-number"]').keyup(function() {
-        var value = $(this).val();
-        value = value.replace(/\D/g, "").split(/(?:([\d]{4}))/g).filter(s => s.length > 0).join("-");
-        $(this).val(value);
-      });
-
-    $('[data-type="mobile-no"]').keyup(function() {
-        var value = $(this).val();
-        value = value.replace(/\D/g, "").split(/(?:([\d]{10}))/g).filter(s => s.length > 0);
-        $(this).val(value);
-      });
-      
+$(document).ready(function(){  
     var current_fs, next_fs, previous_fs; //fieldset
     var opacity;
     var current = 1;

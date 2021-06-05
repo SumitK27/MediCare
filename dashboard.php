@@ -974,9 +974,9 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                 foreach ($rows as $row) {
                                 ?>
                                     <tr>
-                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_fever'] == 0 ? "checked" : ""; ?> /> </th>
-                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_trouble_breathing'] == 0 ? "checked" : ""; ?> /> </th>
-                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_cough'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['fever'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['trouble_breathing'] == 0 ? "checked" : ""; ?> /> </th>
+                                        <th scope='row'> <input type="checkbox" disabled <?php echo $row['cough'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_nasal_congest_running'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_lost_sense'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_sore_throat'] == 0 ? "checked" : ""; ?> /> </th>
@@ -987,7 +987,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['have_nausea_diarrhea'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_chills'] == 0 ? "checked" : ""; ?> /> </th>
                                         <th scope='row'> <input type="checkbox" disabled <?php echo $row['has_told_quarantine'] == 0 ? "checked" : ""; ?> /> </th>
-                                        <th scope='row'> <?php echo $row['date_added']; ?> </th>
+                                        <th scope='row'> <?php echo $row['date_tested']; ?> </th>
                                     </tr>
                                 <?php
                                 }

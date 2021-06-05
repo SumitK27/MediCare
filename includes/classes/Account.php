@@ -106,7 +106,7 @@ class Account
 
     public function getUserSymptoms($id)
     {
-        $query = $this->conn->prepare("SELECT * FROM user_symptoms WHERE user_id=:id ORDER BY date_added DESC;");
+        $query = $this->conn->prepare("SELECT * FROM user_symptoms WHERE user_id=:id ORDER BY date_tested DESC;");
         $query->bindValue(":id", $id);
         $query->execute();
         $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -192,23 +192,62 @@ class Account
         return;
     }
 
-    public function addMedicalRecords($id, $fev, $breath, $cough, $nose, $sense, $throat, $cont_pos, $pos, $travelled, $tired, $diarrhea, $chills, $quarantine)
+    public function addMedicalRecords($id, $fever, $fever_s, $cough, $cough_s, $tiredness, $tiredness_s, $chest_pain, $chest_pain_s, $head_ache, $head_ache_s, $stomach_ache, $stomach_ache_s, $kidney_failure, $heart_problem, $heart_problem_s, $diabetes, $diabetes_s, $less_oxygen_level, $less_oxygen_level_s, $malignancy_cancer, $malignancy_cancer_s, $hypertension, $hypertension_s, $liver_disease, $liver_disease_s, $immunocompromised_condition, $immunocompromised_condition_s, $vomiting, $vomiting_s, $consume_steroids, $sore_throat, $sore_throat_s, $diarrhea, $diarrhea_s, $congestion, $congestion_s, $sense_loss, $sense_loss_s, $skin_rash_discoloration, $skin_rash_discoloration_s, $trouble_breathing, $trouble_breathing_s, $contact_positive, $is_positive, $is_vaccinated, $is_vaccinated_d, $is_vaccinated_2, $is_vaccinated_2_d, $travelled, $chills, $chills_s, $quarantine)
     {
-        $query = $this->conn->prepare("INSERT INTO user_symptoms(user_id, has_fever, has_trouble_breathing, has_cough, has_nasal_congest_running, has_lost_sense, has_sore_throat, had_contact_with_positive, is_positive, has_travelled, felt_tired, have_nausea_diarrhea, has_chills, has_told_quarantine, date_added) VALUES (:id, :fever, :breathing, :cough, :nose, :sense, :throat, :cont_pos, :pos, :travelled, :tired, :diarrhea, :chills, :quarantine, NOW())");
+        $query = $this->conn->prepare("INSERT INTO user_symptoms(user_id, fever, fever_s, cough, cough_s, tiredness, tiredness_s, chest_pain, chest_pain_s, head_ache, head_ache_s, stomach_ache, stomach_ache_s, kidney_failure, heart_problem, heart_problem_s, diabetes, diabetes_s, less_oxygen_level, less_oxygen_level_s, malignancy_cancer, malignancy_cancer_s, hypertension, hypertension_s, liver_disease, liver_disease_s, immunocompromised_condition, immunocompromised_condition_s, vomiting, vomiting_s, consume_steroids, sore_throat, sore_throat_s, diarrhea, diarrhea_s, congestion, congestion_s, sense_loss, sense_loss_s, skin_rash_discoloration, skin_rash_discoloration_s, trouble_breathing, trouble_breathing_s, contact_positive, is_positive, is_vaccinated, is_vaccinated_d, is_vaccinated_2, is_vaccinated_2_d, travelled, chills, chills_s, quarantine, date_tested) VALUES (:user_id, :fever, :fever_s, :cough, :cough_s, :tiredness, :tiredness_s, :chest_pain, :chest_pain_s, :head_ache, :head_ache_s, :stomach_ache, :stomach_ache_s, :kidney_failure, :heart_problem, :heart_problem_s, :diabetes, :diabetes_s, :less_oxygen_level, :less_oxygen_level_s, :malignancy_cancer, :malignancy_cancer_s, :hypertension, :hypertension_s, :liver_disease, :liver_disease_s, :immunocompromised_condition, :immunocompromised_condition_s, :vomiting, :vomiting_s, :consume_steroids, :sore_throat, :sore_throat_s, :diarrhea, :diarrhea_s, :congestion, :congestion_s, :sense_loss, :sense_loss_s, :skin_rash_discoloration, :skin_rash_discoloration_s, :trouble_breathing, :trouble_breathing_s, :contact_positive, :is_positive, :is_vaccinated, :is_vaccinated_d, :is_vaccinated_2, :is_vaccinated_2_d, :travelled, :chills, :chills_s, :quarantine, NOW())");
 
-        $query->bindValue(":id", $id);
-        $query->bindValue(":fever", $fev);
-        $query->bindValue(":breathing", $breath);
+        $query->bindValue(":user_id", $id);
+        $query->bindValue(":fever", $fever);
+        $query->bindValue(":fever_s", $fever_s);
         $query->bindValue(":cough", $cough);
-        $query->bindValue(":nose", $nose);
-        $query->bindValue(":sense", $sense);
-        $query->bindValue(":throat", $throat);
-        $query->bindValue(":cont_pos", $cont_pos);
-        $query->bindValue(":pos", $pos);
-        $query->bindValue(":travelled", $travelled);
-        $query->bindValue(":tired", $tired);
+        $query->bindValue(":cough_s", $cough_s);
+        $query->bindValue(":tiredness", $tiredness);
+        $query->bindValue(":tiredness_s", $tiredness_s);
+        $query->bindValue(":chest_pain", $chest_pain);
+        $query->bindValue(":chest_pain_s", $chest_pain_s);
+        $query->bindValue(":head_ache", $head_ache);
+        $query->bindValue(":head_ache_s", $head_ache_s);
+        $query->bindValue(":stomach_ache", $stomach_ache);
+        $query->bindValue(":stomach_ache_s", $stomach_ache_s);
+        $query->bindValue(":kidney_failure", $kidney_failure);
+        $query->bindValue(":heart_problem", $heart_problem);
+        $query->bindValue(":heart_problem_s", $heart_problem_s);
+        $query->bindValue(":diabetes", $diabetes);
+        $query->bindValue(":diabetes_s", $diabetes_s);
+        $query->bindValue(":less_oxygen_level", $less_oxygen_level);
+        $query->bindValue(":less_oxygen_level_s", $less_oxygen_level_s);
+        $query->bindValue(":malignancy_cancer", $malignancy_cancer);
+        $query->bindValue(":malignancy_cancer_s", $malignancy_cancer_s);
+        $query->bindValue(":hypertension", $hypertension);
+        $query->bindValue(":hypertension_s", $hypertension_s);
+        $query->bindValue(":liver_disease", $liver_disease);
+        $query->bindValue(":liver_disease_s", $liver_disease_s);
+        $query->bindValue(":immunocompromised_condition", $immunocompromised_condition);
+        $query->bindValue(":immunocompromised_condition_s", $immunocompromised_condition_s);
+        $query->bindValue(":vomiting", $vomiting);
+        $query->bindValue(":vomiting_s", $vomiting_s);
+        $query->bindValue(":consume_steroids", $consume_steroids);
+        $query->bindValue(":sore_throat", $sore_throat);
+        $query->bindValue(":sore_throat_s", $sore_throat_s);
         $query->bindValue(":diarrhea", $diarrhea);
+        $query->bindValue(":diarrhea_s", $diarrhea_s);
+        $query->bindValue(":congestion", $congestion);
+        $query->bindValue(":congestion_s", $congestion_s);
+        $query->bindValue(":sense_loss", $sense_loss);
+        $query->bindValue(":sense_loss_s", $sense_loss_s);
+        $query->bindValue(":skin_rash_discoloration", $skin_rash_discoloration);
+        $query->bindValue(":skin_rash_discoloration_s", $skin_rash_discoloration_s);
+        $query->bindValue(":trouble_breathing", $trouble_breathing);
+        $query->bindValue(":trouble_breathing_s", $trouble_breathing_s);
+        $query->bindValue(":contact_positive", $contact_positive);
+        $query->bindValue(":is_positive", $is_positive);
+        $query->bindValue(":is_vaccinated", $is_vaccinated);
+        $query->bindValue(":is_vaccinated_d", $is_vaccinated_d);
+        $query->bindValue(":is_vaccinated_2", $is_vaccinated_2);
+        $query->bindValue(":is_vaccinated_2_d", $is_vaccinated_2_d);
+        $query->bindValue(":travelled", $travelled);
         $query->bindValue(":chills", $chills);
+        $query->bindValue(":chills_s", $chills_s);
         $query->bindValue(":quarantine", $quarantine);
         $query->execute();
     }
@@ -296,13 +335,6 @@ class Account
     {
         if (strlen($addr) <= 5 || strlen($addr) >= 80) {
             array_push($this->errorArray, Constants::$addressInvalid);
-        }
-    }
-
-    private function validateGender($gen)
-    {
-        if ($gen > 3 || $gen <= 0) {
-            array_push($this->errorArray, Constants::$genderInvalid);
         }
     }
 
