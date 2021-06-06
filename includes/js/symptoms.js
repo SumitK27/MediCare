@@ -8,7 +8,7 @@ var kidney_failure = template("kidney_failure", "Kidney Failure");
 var heart_problem = template("heart_problem", "Heart Problem");
 var diabetes = template("diabetes", "Diabetes");
 var less_oxygen_level = template("less_oxygen_level", "Less Oxygen Level");
-var malignancy_cancer = template("malignancy_cancer", "malignancy_cancer");
+var malignancy_cancer = template("malignancy_cancer", "Malignancy Cancer");
 var hypertension = template("hypertension", "Hypertension");
 var liver_disease = template("liver_disease", "Liver Disease");
 var immunocompromised_condition = template("immunocompromised_condition", "Immunocompromised Condition");
@@ -76,6 +76,7 @@ $(function () {
     select("diarrhea");
     $(".symptoms-2").append(skin_rash_discoloration);
     $(".symptoms-2").append(chills);
+    select("chills");
 
     $(".symptoms-3").append(contact_positive);
     $(".symptoms-3").append(is_positive);
@@ -83,7 +84,6 @@ $(function () {
     selectDate("is_vaccinated");
     $(".symptoms-3").append(is_vaccinated_2);
     selectDate("is_vaccinated_2");
-    select("chills");
     $(".symptoms-3").append(quarantine);
 });
 

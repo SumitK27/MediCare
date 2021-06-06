@@ -204,7 +204,7 @@ if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nur
 <?php
 } else {
     //  if not logged in
-    header("Location: ../login.php");
+    header("Location: ./login.php");
 }
-require_once('../includes/importsAfter.php');
+require_once('./includes/importsAfter.php');
 ?>

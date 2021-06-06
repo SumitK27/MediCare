@@ -1,3 +1,4 @@
+<title>User Info</title>
 <?php
 require_once('./includes/imports.php');
 require_once('./includes/config.php');
@@ -10,7 +11,8 @@ $id = $_GET["user_id"];
 $userInfo = $account->getUser($id);
 require_once('./includes/components/navbar.php');
 
-function iconColors($element) {
+function iconColors($element)
+{
     if ($element == 0) {
         return 'text-dark';
     } else if ($element == 1) {
@@ -22,11 +24,28 @@ function iconColors($element) {
     }
 }
 
+function hasSymptom($element)
+{
+    if ($element == 0) {
+        return 'text-success';
+    } else {
+        return 'text-danger';
+    }
+}
+
+function displayDate($element)
+{
+    if ($element == '0000-00-00 00:00:00') {
+        return '-';
+    }
+    return substr($element, 0, 10);
+}
+
 $getInfo = $account->getInfo();
 if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
     // echo $_SESSION["userLoggedIn"];
 ?>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <link rel="stylesheet" href="./includes/css/style.user-details.css">
     <div class="container">
         <div class="card">
@@ -74,18 +93,34 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                         <thead>
                             <tr>
                                 <th scope='col'>Fever</th>
-                                <th scope='col'>Trouble Breathing</th>
                                 <th scope='col'>Cough</th>
-                                <th scope='col'>Nasal Congestion/Running</th>
-                                <th scope='col'>Lost Sense</th>
-                                <th scope='col'>Sore Throat</th>
-                                <th scope='col'>Contacted COVID Positive</th>
-                                <th scope='col'>Positive</th>
-                                <th scope='col'>Travelled</th>
                                 <th scope='col'>Tiredness</th>
+                                <th scope='col'>Chest Pain</th>
+                                <th scope='col'>Head Ache</th>
+                                <th scope='col'>Stomach Ache</th>
+                                <th scope='col'>Oxygen Level</th>
+                                <th scope='col'>Sore Throat</th>
+                                <th scope='col'>Congestion</th>
+                                <th scope='col'>Sense Loss</th>
+                                <th scope='col'>Trouble Breathing</th>
+                                <th scope='col'>Travelled</th>
+                                <th scope='col'>Kidney Failure</th>
+                                <th scope='col'>Heart Problem</th>
+                                <th scope='col'>Diabetes</th>
+                                <th scope='col'>Malignancy Cancer</th>
+                                <th scope='col'>Hypertension</th>
+                                <th scope='col'>Liver Disease</th>
+                                <th scope='col'>Immunocompromised Condition</th>
+                                <th scope='col'>Vomiting</th>
+                                <th scope='col'>Consume Steroids</th>
                                 <th scope='col'>Diarrhea</th>
+                                <th scope='col'>Skin Rash Discoloration</th>
                                 <th scope='col'>Chills</th>
-                                <th scope='col'>Told to be Quarantine</th>
+                                <th scope='col'>Contacted COVID Positive</th>
+                                <th scope='col'>COVID Positive</th>
+                                <th scope='col'>1st Dose</th>
+                                <th scope='col'>2nd Dose</th>
+                                <th scope='col'>Quarantine</th>
                                 <th scope='col'>Tested At</th>
                             </tr>
                         </thead>
@@ -95,18 +130,63 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                             ?>
                                 <tr>
                                     <th scope='row'><button class="form-control"><i class="fa fa-thermometer-half icons <?php echo iconColors($row['fever_s']) ?>" aria-hidden="true"></i></button></th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['trouble_breathing'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['cough'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['congestion'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['sense_loss'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['sore_throat'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['contact_positive'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['is_positive'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['travelled'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['tiredness'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['diarrhea'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['chills'] == 0 ? "checked" : ""; ?> /> </th>
-                                    <th scope='row'> <input type="checkbox" class="form-control" disabled <?php echo $row['quarantine'] == 0 ? "checked" : ""; ?> /> </th>
+
+                                    <th scope='row'><button class="form-control"><i class="fa fa-head-side-cough icons <?php echo iconColors($row['cough_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fa fa-tired icons <?php echo iconColors($row['tiredness_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['chest_pain_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fa fa-head-side-virus icons <?php echo iconColors($row['head_ache_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['stomach_ache_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['less_oxygen_level_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['sore_throat_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['congestion_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['sense_loss_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['trouble_breathing_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-map-marked-alt icons <?php echo hasSymptom($row['travelled']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['kidney_failure']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['heart_problem_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diabetes_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['malignancy_cancer_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['hypertension_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['liver_disease']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-ban icons <?php echo iconColors($row['immunocompromised_condition_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['vomiting_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-capsules icons <?php echo hasSymptom($row['consume_steroids']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diarrhea_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-allergies icons <?php echo hasSymptom($row['skin_rash_discoloration']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-snowflake icons <?php echo iconColors($row['chills_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-people-arrows icons <?php echo hasSymptom($row['contact_positive']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-virus icons <?php echo hasSymptom($row['is_positive']) ?>" aria-hidden="true"></i></button></th>
+
+                                    <th scope='row'> <?php echo displayDate($row['is_vaccinated_d']); ?> </th>
+
+                                    <th scope='row'> <?php echo displayDate($row['is_vaccinated_2_d']); ?> </th>
+
+                                    <th scope='row'><button class="form-control"><i class="fas fa-procedures icons <?php echo hasSymptom($row['quarantine']) ?>" aria-hidden="true"></i></button></th>
+
                                     <th scope='row'> <?php echo $row['date_tested']; ?> </th>
                                 </tr>
                             <?php
