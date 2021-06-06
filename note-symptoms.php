@@ -3,11 +3,13 @@ require_once('./includes/imports.php');
 require_once('./includes/config.php');
 require_once('./includes/classes/Account.php');
 
-$account = new Account($conn);
-
 $id = $_GET["user_id"];
-$userInfo = $account->getUser($id);
+$account = new Account($conn);
+$userInfo = $account->getInfo();
+
 require_once('./includes/components/navbar.php');
+require_once('./includes/importsAfter.php');
+
 
 if (isset($_POST['submit'])) {
     $fever = yesOrNo($_POST['fever']);
@@ -105,8 +107,7 @@ function yesOrNo($value)
     return FALSE;
 }
 
-$getInfo = $account->getInfo();
-if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor' || 'Patient') {
+if (isset($_SESSION["userLoggedIn"]) && ($userInfo["role_name"] == 'Admin' || $userInfo["role_name"] == 'Nurse' || $userInfo["role_name"] == 'Doctor' || $userInfo["role_name"] == 'Patient')) {
 ?>
     <title>Patient Details</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
