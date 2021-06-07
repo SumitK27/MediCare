@@ -122,13 +122,7 @@ if (isset($_SESSION["userLoggedIn"]) && ($userInfo["role_name"] == 'Admin' || $u
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="
-                        col-xl-5
-                        text-center
-                        p-0
-                        mt-3
-                        mb-2
-                    ">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
                 <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                     <!--Start Patients Info-->
                     <h2 id="heading">Patient's Symptoms Information</h2>
