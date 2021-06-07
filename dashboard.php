@@ -54,12 +54,12 @@ function displayDate($element)
 /* ------------------------------ Nurse Dashboard ------------------------------*/
 if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 ?>
-    <div class="row" style="height:100%;">
-        <div class="col-2 bg-dark mt-6" style="height: 100vh;">
+    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+        <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="n-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="n-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu">
-                        <div class="col-12 sb-sidenav-footer pt-5" style="width: 250px; height: 100px; ">
+                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
+                        <div class="col-12 sb-sidenav-footer pt-5">
                             <div class="small">Logged in as:</div>
                             <?php
                             echo $userInfo['first_name'] . " " . $userInfo['last_name'];
@@ -68,7 +68,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                         <div class="col-12 nav flex-column nav-pills text-white" id="n-pills-tab" role="tablist">
                             <a class="nav-link text-white" href="#n-pills-profile">
 
-                                <a class="nav-link active text-white mb-4" id="n-pills-profile-tab" data-toggle="pill" href="#n-pills-profile" role="tab" aria-controls="n-pills-profile" aria-controls="n-pills-profile" aria-selected="true"><i class="fa fa-user-circle mr-3"></i>Home</a>
+                                <a class="nav-link active text-white mb-4" id="n-pills-profile-tab" data-toggle="pill" href="#n-pills-profile" role="tab" aria-controls="n-pills-profile" aria-controls="n-pills-profile" aria-selected="true"><i class="fa fa-user-circle mr-3"></i>Profile</a>
 
                                 <a class="nav-link text-white mb-4" id="n-pills-patient-tab" data-toggle="pill" href="#n-pills-patient" role="tab" aria-controls="n-pills-patient" aria-controls="n-pills-patient" aria-selected="true"><i class="fas fa-hospital-user mr-3"></i>Patients</a>
 
@@ -258,20 +258,20 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
             </div>
         </div>
     </div>
-    </div>
 <?php
 }
 /* ------------------------------ End of Nurse Dashboard ------------------------------*/
 
 
-/* ------------------------------ Doctor Dashboard ------------------------------ */ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
+/* ------------------------------ Doctor Dashboard ------------------------------ */ 
+else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
 ?>
 
-    <div class="row">
-        <div class="col-2 bg-dark mt-6" style="height: 100vh;">
+    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+        <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="d-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="d-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu">
+                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
                         <div class="col-12 sb-sidenav-footer p-3" style="width: 250px; height: 100px; ">
                             <div class="small">Logged in as:</div>
                             <?php
@@ -534,15 +534,16 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 }
 /* ------------------------------ End of Doctor Dashboard ------------------------------ */
 
-/* ------------------------------ Admin Dashboard ------------------------------ */ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
+/* ------------------------------ Admin Dashboard ------------------------------ */ 
+else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
 ?>
 
-    <div class="row">
-        <div class="col-2 bg-dark mt-6" style="height: 100vh;">
+    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+        <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="a-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="a-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu">
-                        <div class="col-12 sb-sidenav-footer pt-5" style="width: 250px; height: 100px; ">
+                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
+                        <div class="col-12 sb-sidenav-footer pt-5">
                             <div class="small">Logged in as:</div>
                             <?php
                             echo $userInfo['first_name'] . " " . $userInfo['last_name'];
@@ -867,14 +868,15 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 }
 /* ------------------------------ End of Admin Dashboard ------------------------------ */
 
-/* ------------------------------ Patient Dashboard ------------------------------*/ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
+/* ------------------------------ Patient Dashboard ------------------------------*/ 
+else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 ?>
-    <div class="row" style="height:100%;">
-        <div class="col-2 bg-dark mt-6" style="height: 100vh;">
+    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+        <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="p-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="p-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu">
-                        <div class="col-12 sb-sidenav-footer pt-5" style="width: 250px; height: 100px; ">
+                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
+                        <div class="col-12 sb-sidenav-footer pt-5">
                             <div class="small">Logged in as:</div>
                             <?php
                             echo $userInfo['first_name'] . " " . $userInfo['last_name'];
@@ -1133,7 +1135,8 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 }
 /* ------------------------------ End of Patient Dashboard ------------------------------*/
 
-/* ------------------------------ If Not Logged In ------------------------------ */ else {
+/* ------------------------------ If Not Logged In ------------------------------ */ 
+else {
     //  if not logged in
     header("Location: login.php");
     print_r($_SESSION["userLoggedIn"]);
