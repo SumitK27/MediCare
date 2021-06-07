@@ -84,7 +84,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
             <div class="tab-content" id="n-pills-tabContent">
                 <div class="tab-pane fade show active" id="n-pills-profile" role="tabpanel" aria-labelledby="n-pills-profile-tab">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-dark text-light">
                             <h1>Welcome,
                                 <?php
                                 echo $userInfo['first_name'] . " " . $userInfo['last_name'];
@@ -118,7 +118,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                                 <div class="form-container-user">
                                     <form action="" method="POST">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
@@ -147,7 +147,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                                             </div>
 
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="oldPw">Old Password</label>
                                                     <?php echo $account->getError(Constants::$passwordIncorrect); ?>
@@ -294,7 +294,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor")
             <div class="tab-content" id="d-pills-tabContent">
                 <div class="tab-pane fade show active" id="d-pills-profile" role="tabpanel" aria-labelledby="d-pills-profile-tab">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-dark text-light">
                             <h1>Welcome,
                                 <?php
                                 echo $userInfo['first_name'] . " " . $userInfo['last_name'];
@@ -328,7 +328,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor")
                                 <div class="form-container-user">
                                     <form action="" method="POST">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
@@ -357,7 +357,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor")
                                             </div>
 
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="oldPw">Old Password</label>
                                                     <?php echo $account->getError(Constants::$passwordIncorrect); ?>
@@ -570,7 +570,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") 
             <div class="tab-content" id="a-pills-tabContent">
                 <div class="tab-pane fade show active" id="a-pills-profile" role="tabpanel" aria-labelledby="a-pills-profile-tab">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-dark text-light">
                             <h1>Welcome,
                                 <?php
                                 echo $userInfo['first_name'] . " " . $userInfo['last_name'];
@@ -604,7 +604,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") 
                                 <div class="form-container-user">
                                     <form action="" method="POST">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
@@ -633,7 +633,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") 
                                             </div>
 
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="oldPw">Old Password</label>
                                                     <?php echo $account->getError(Constants::$passwordIncorrect); ?>
@@ -898,7 +898,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
             <div class="tab-content" id="p-pills-tabContent">
                 <div class="tab-pane fade show active" id="p-pills-profile" role="tabpanel" aria-labelledby="p-pills-profile-tab">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-dark text-light">
                             <h1>Welcome,
                                 <?php
                                 echo $userInfo['first_name'] . " " . $userInfo['last_name'];
@@ -932,7 +932,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                 <div class="form-container-user">
                                     <form action="" method="POST">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
@@ -961,7 +961,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                             </div>
 
 
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="oldPw">Old Password</label>
                                                     <?php echo $account->getError(Constants::$passwordIncorrect); ?>
