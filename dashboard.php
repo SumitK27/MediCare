@@ -54,7 +54,7 @@ function displayDate($element)
 /* ------------------------------ Nurse Dashboard ------------------------------*/
 if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 ?>
-    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+    <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="n-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="n-sidenavAccordion">
@@ -267,7 +267,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
 ?>
 
-    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+    <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="d-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="d-sidenavAccordion">
@@ -538,7 +538,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor")
 else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
 ?>
 
-    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+    <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="a-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="a-sidenavAccordion">
@@ -871,7 +871,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") 
 /* ------------------------------ Patient Dashboard ------------------------------*/ 
 else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 ?>
-    <div class="row flex-row flex-nowrap" style="height:100vh; margin-right:0;">
+    <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div class="bg-dark mt-6">
             <div class="nav flex-column nav-pills" id="p-pills-tab" role="tablist">
                 <nav class="sb-sidenav accordion text-white text-left" id="p-sidenavAccordion">
