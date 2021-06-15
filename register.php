@@ -72,7 +72,7 @@ function getInputValue($name)
                 </small>
 
                 <!-- Sign up button -->
-                <button class="btn btn-info my-4 btn-block" type="submit" name="register">Sign in</button>
+                <button class="btn btn-info my-4 btn-block" type="submit" name="register">Sign Up</button>
 
                 <!-- Social register -->
                 <p>or sign up with:</p>
