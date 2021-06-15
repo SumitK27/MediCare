@@ -47,6 +47,24 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
 ?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <link rel="stylesheet" href="./includes/css/style.user-details.css">
+    <style>
+        .cube {
+            width: 10px;
+            height: 10px;
+        }
+        .text {
+            margin-left: 5px;
+        }
+        .text-group {
+            display: flex;
+            align-items: center;
+        }
+        .indication-group {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    </style>
+
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -193,6 +211,24 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                             }
                             ?>
                     </table>
+                    <div class="indication-group">
+                        <div class="text-group">
+                            <div class="cube bg-dark"></div>
+                            <div class="text">None</div>
+                        </div>
+                        <div class="text-group">
+                            <div class="cube bg-info"></div>
+                            <div class="text">Low</div>
+                        </div>
+                        <div class="text-group">
+                            <div class="cube bg-warning"></div>
+                            <div class="text">Medium</div>
+                        </div>
+                        <div class="text-group">
+                            <div class="cube bg-danger"></div>
+                            <div class="text">High</div>
+                        </div>
+                    </div>
                 <?php
                 } else {
                 ?>

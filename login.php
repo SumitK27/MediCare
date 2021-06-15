@@ -18,12 +18,13 @@ $account = new Account($conn);
         $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
         $success = $account->login($email, $password);
         echo "<h1>" . $success . "</h1>";
-        if($success) {
+        if ($success == 1) {
             // Store session
             $_SESSION["userLoggedIn"] = $email;
 
-            // Redirect to home page
+            // // Redirect to home page
             header("Location: dashboard.php");
+            // echo "Success = 1";
         }
     }
     if (isset($_POST["remember"])) {

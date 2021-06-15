@@ -1,5 +1,43 @@
 <title>Dashboard</title>
 
+<style>
+    #sidebar-container {
+        min-height: 100vh;
+        background-color: #333;
+        padding: 0;
+    }
+
+    /* Sidebar sizes when expanded and expanded */
+    .sidebar-expanded {
+        width: 230px;
+    }
+
+    .sidebar-collapsed {
+        width: 90px;
+    }
+
+    /* Menu item*/
+    #sidebar-container .list-group a {
+        height: 50px;
+        color: white;
+    }
+
+    .loggedIn {
+        height: 100px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .collapsed-icons {
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+        transform: scale(1.2);
+    }
+</style>
+
 <?php
 require_once('./includes/imports.php');
 require_once('./includes/config.php');
@@ -55,28 +93,42 @@ function displayDate($element)
 if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
-        <div class="bg-dark mt-6">
-            <div class="nav flex-column nav-pills" id="n-pills-tab" role="tablist">
-                <nav class="sb-sidenav accordion text-white text-left" id="n-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
-                        <div class="col-12 sb-sidenav-footer pt-5">
-                            <div class="small">Logged in as:</div>
-                            <?php
-                            echo $userInfo['first_name'] . " " . $userInfo['last_name'];
-                            ?>
-                        </div>
-                        <div class="col-12 nav flex-column nav-pills text-white" id="n-pills-tab" role="tablist">
-                            <a class="nav-link text-white" href="#n-pills-profile">
+        <div id="sidebar-container" class="sidebar-expanded">
+            <div class=" nav flex-column nav-pills text-light" id="n-pills-tab" role="tablist">
+                <div class="loggedIn">
+                    Logged In as:<br>
+                    <?php
+                    echo $userInfo['first_name'] . " " . $userInfo['last_name'];
+                    ?>
+                </div>
 
-                                <a class="nav-link active text-white mb-4" id="n-pills-profile-tab" data-toggle="pill" href="#n-pills-profile" role="tab" aria-controls="n-pills-profile" aria-controls="n-pills-profile" aria-selected="true"><i class="fa fa-user-circle mr-3"></i>Profile</a>
-
-                                <a class="nav-link text-white mb-4" id="n-pills-patient-tab" data-toggle="pill" href="#n-pills-patient" role="tab" aria-controls="n-pills-patient" aria-controls="n-pills-patient" aria-selected="true"><i class="fas fa-hospital-user mr-3"></i>Patients</a>
-
-                                <a class="nav-link text-white mb-4" id="n-pills-nurse-tab" data-toggle="pill" href="#n-pills-nurse" role="tab" aria-controls="n-pills-patient" aria-controls="n-pills-nurse" aria-selected="true"><i class="fas fa-notes-medical mr-3"></i>Report</a>
-                            </a>
-                        </div>
+                <a href="#n-pills-profile" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link active text-white mb-4" id="n-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="n-pills-profile" aria-selected="true">
+                    <div class="icon">
+                        <span class="fa fa-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Profile</span>
                     </div>
-                </nav>
+                </a>
+
+                <a href="#n-pills-patient" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="n-pills-patient-tab" data-toggle="pill" role="tab" aria-controls="n-pills-patient" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-hospital-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Patients</span>
+                    </div>
+                </a>
+
+                <a href="#n-pills-nurse" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="n-pills-nurse-tab" data-toggle="pill" role="tab" aria-controls="n-pills-nurse" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-notes-medical fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Report</span>
+                    </div>
+                </a>
+
+                <a href="#top" data-toggle="sidebar-collapse" class="bg-dark text-light list-group-item list-group-item-action d-flex align-items-center">
+                    <div class="icon">
+                        <span id="collapse-icon" class="fas fa-angle-double-left mr-3"></span>
+                        <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -267,26 +319,42 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
-        <div class="bg-dark mt-6">
-            <div class="nav flex-column nav-pills" id="d-pills-tab" role="tablist">
-                <nav class="sb-sidenav accordion text-white text-left" id="d-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
-                        <div class="col-12 sb-sidenav-footer p-3">
-                            <div class="small">Logged in as:</div>
-                            <?php
-                            echo $userInfo['first_name'] . " " . $userInfo['last_name'];
-                            ?>
-                        </div>
+        <div id="sidebar-container" class="sidebar-expanded">
+            <div class=" nav flex-column nav-pills text-white" id="n-pills-tab" role="tablist">
+                <div class="loggedIn">
+                    Logged In as:<br>
+                    <?php
+                    echo $userInfo['first_name'] . " " . $userInfo['last_name'];
+                    ?>
+                </div>
 
-                        <div class="col-12 nav flex-column nav-pills text-white" id="d-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active text-white mb-4" id="d-pills-profile-tab" data-toggle="pill" href="#d-pills-profile" role="tab" aria-controls="d-pills-profile" aria-selected="false"><i class="fa fa-user-circle mr-3"></i>Profile</a>
-
-                            <a class="nav-link text-white mb-4" id="d-pills-patient-tab " data-toggle="pill" href="#d-pills-patient" role="tab" aria-controls="d-pills-patient" aria-selected="true"><i class="fas fa-hospital-user mr-3"></i>Patients</a>
-
-                            <a class="nav-link text-white" id="d-pills-nurse-tab" data-toggle="pill" href="#d-pills-nurse" role="tab" aria-controls="d-pills-nurse" aria-selected="true"><i class="fa fa-user-md mr-3"></i>Nurses</a>
-                        </div>
+                <a href="#d-pills-profile" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link active text-white mb-4" id="d-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="d-pills-profile" aria-selected="true">
+                    <div class="icon">
+                        <span class="fa fa-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Profile</span>
                     </div>
-                </nav>
+                </a>
+
+                <a href="#d-pills-patient" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="d-pills-patient-tab" data-toggle="pill" role="tab" aria-controls="d-pills-patient" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-hospital-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Patients</span>
+                    </div>
+                </a>
+
+                <a href="#d-pills-nurse" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="d-pills-nurse-tab" data-toggle="pill" role="tab" aria-controls="d-pills-nurse" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-notes-medical fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Report</span>
+                    </div>
+                </a>
+
+                <a href="#top" data-toggle="sidebar-collapse" class="bg-dark text-light list-group-item list-group-item-action d-flex align-items-center">
+                    <div class="icon">
+                        <span id="collapse-icon" class="fas fa-angle-double-left mr-3"></span>
+                        <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="col" style="overflow: auto;">
@@ -537,30 +605,42 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor")
 else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
-        <div class="bg-dark mt-6">
-            <div class="nav flex-column nav-pills" id="a-pills-tab" role="tablist">
-                <nav class="sb-sidenav accordion text-white text-left" id="a-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
-                        <div class="col-12 sb-sidenav-footer pt-5">
-                            <div class="small">Logged in as:</div>
-                            <?php
-                            echo $userInfo['first_name'] . " " . $userInfo['last_name'];
-                            ?>
-                        </div>
-                        <div class="col-12 nav flex-column nav-pills text-white" id="a-pills-tab" role="tablist">
-                            <a class="nav-link text-white" href="#a-pills-profile"></a>
+        <div id="sidebar-container" class="sidebar-expanded">
+            <div class=" nav flex-column nav-pills text-white" id="n-pills-tab" role="tablist">
+                <div class="loggedIn">
+                    Logged In as:<br>
+                    <?php
+                    echo $userInfo['first_name'] . " " . $userInfo['last_name'];
+                    ?>
+                </div>
 
-                            <a class="nav-link active text-white mb-4" id="a-pills-profile-tab" data-toggle="pill" href="#a-pills-profile" role="tab" aria-controls="a-pills-profile" aria-controls="a-pills-profile" aria-selected="true"><i class="fa fa-user-circle mr-3"></i>Profile</a>
-
-                            <a class="nav-link text-white mb-4" id="a-pills-patient-tab" data-toggle="pill" href="#a-pills-patient" role="tab" aria-controls="a-pills-patient" aria-controls="a-pills-patient" aria-selected="true"><i class="fas fa-hospital-user mr-3"></i>Patients</a>
-
-                            <a class="nav-link text-white mb-4" id="a-pills-nurse-tab" data-toggle="pill" href="#a-pills-nurse" role="tab" aria-controls="a-pills-patient" aria-controls="a-pills-nurse" aria-selected="true"><i class="fa fa-user-nurse mr-3"></i>Nurse</a>
-
-                            <a class="nav-link text-white mb-4" id="a-pills-doctor-tab" data-toggle="pill" href="#a-pills-doctor" role="tab" aria-controls="a-pills-patient" aria-controls="a-pills-doctor" aria-selected="true"><i class="fa fa-user-md mr-3"></i>Doctor</a>
-
-                        </div>
+                <a href="#a-pills-profile" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link active text-white mb-4" id="a-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="a-pills-profile" aria-selected="true">
+                    <div class="icon">
+                        <span class="fa fa-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Profile</span>
                     </div>
-                </nav>
+                </a>
+
+                <a href="#a-pills-patient" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="a-pills-patient-tab" data-toggle="pill" role="tab" aria-controls="a-pills-patient" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-hospital-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Patients</span>
+                    </div>
+                </a>
+
+                <a href="#a-pills-nurse" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="a-pills-nurse-tab" data-toggle="pill" role="tab" aria-controls="a-pills-nurse" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-notes-medical fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Report</span>
+                    </div>
+                </a>
+
+                <a href="#top" data-toggle="sidebar-collapse" class="bg-dark text-light list-group-item list-group-item-action d-flex align-items-center">
+                    <div class="icon">
+                        <span id="collapse-icon" class="fas fa-angle-double-left mr-3"></span>
+                        <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -870,25 +950,42 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") 
 else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
-        <div class="bg-dark mt-6">
-            <div class="nav flex-column nav-pills" id="p-pills-tab" role="tablist">
-                <nav class="sb-sidenav accordion text-white text-left" id="p-sidenavAccordion">
-                    <div class="col-12 sb-sidenav-menu" style="min-width: 170px;">
-                        <div class="col-12 sb-sidenav-footer pt-5">
-                            <div class="small">Logged in as:</div>
-                            <?php
-                            echo $userInfo['first_name'] . " " . $userInfo['last_name'];
-                            ?>
-                        </div>
-                        <div class="col-12 nav flex-column nav-pills text-white" id="p-pills-tab" role="tablist">
-                            <a class="nav-link active text-white mb-4" id="p-pills-profile-tab" data-toggle="pill" href="#p-pills-profile" role="tab" aria-controls="p-pills-profile" aria-controls="p-pills-profile" aria-selected="true"><i class="fa fa-user-circle mr-3"></i>Home</a>
+        <div id="sidebar-container" class="sidebar-expanded">
+            <div class=" nav flex-column nav-pills text-white" id="n-pills-tab" role="tablist">
+                <div class="loggedIn">
+                    Logged In as:<br>
+                    <?php
+                    echo $userInfo['first_name'] . " " . $userInfo['last_name'];
+                    ?>
+                </div>
 
-                            <a class="nav-link text-white mb-4" id="p-pills-patient-tab" data-toggle="pill" href="#p-pills-patient" role="tab" aria-controls="p-pills-patient" aria-controls="p-pills-patient" aria-selected="true"><i class="fa fa-user mr-3"></i>My Records</a>
-
-                            <a class="nav-link text-white mb-4" id="p-pills-nurse-tab" data-toggle="pill" href="#p-pills-nurse" role="tab" aria-controls="p-pills-patient" aria-controls="p-pills-nurse" aria-selected="true"><i class="fas fa-notes-medical mr-3"></i>Report</a>
-                        </div>
+                <a href="#p-pills-profile" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link active text-white mb-4" id="p-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="p-pills-profile" aria-selected="true">
+                    <div class="icon">
+                        <span class="fa fa-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Profile</span>
                     </div>
-                </nav>
+                </a>
+
+                <a href="#p-pills-patient" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="p-pills-patient-tab" data-toggle="pill" role="tab" aria-controls="p-pills-patient" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-hospital-user fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Patients</span>
+                    </div>
+                </a>
+
+                <a href="#p-pills-nurse" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="p-pills-nurse-tab" data-toggle="pill" role="tab" aria-controls="p-pills-nurse" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-notes-medical fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Report</span>
+                    </div>
+                </a>
+
+                <a href="#top" data-toggle="sidebar-collapse" class="bg-dark text-light list-group-item list-group-item-action d-flex align-items-center">
+                    <div class="icon">
+                        <span id="collapse-icon" class="fas fa-angle-double-left mr-3"></span>
+                        <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -1130,8 +1227,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
 }
 /* ------------------------------ End of Patient Dashboard ------------------------------*/
 
-/* ------------------------------ If Not Logged In ------------------------------ */ 
-else {
+/* ------------------------------ If Not Logged In ------------------------------ */ else {
     //  if not logged in
     header("Location: login.php");
     print_r($_SESSION["userLoggedIn"]);
@@ -1146,4 +1242,54 @@ require_once('./includes/importsAfter.php');
             [5, 10, 20, 50, 100, "All"]
         ]
     });
+
+    // Hide submenus
+    $('#body-row .collapse').collapse('hide');
+
+    // Collapse/Expand icon
+    $('#collapse-icon').addClass('fa-angle-double-left');
+
+    // Collapse click
+    $('[data-toggle=sidebar-collapse]').click(function() {
+        SidebarCollapse();
+        iconScale();
+    });
+    
+    $(document).ready(function () {
+        if($(window).width() < 786) {
+            SidebarCollapse();
+            iconScale();
+        }
+    });
+
+    function iconScale() {
+        if ($('#sidebar-container').hasClass('sidebar-expanded')) {
+            console.log('Expanded');
+            $('.icon').removeClass('collapsed-icons');
+            $('.loggedIn').show();
+        }
+        if ($('#sidebar-container').hasClass('sidebar-collapse')) {
+            console.log('Collapsed');
+            $('.icon').addClass('collapsed-icons');
+            $('.loggedIn').hide();
+        }
+    };
+        
+    function SidebarCollapse() {
+        $('.menu-collapsed').toggleClass('d-none');
+        $('.sidebar-submenu').toggleClass('d-none');
+        $('.submenu-icon').toggleClass('d-none');
+        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapse');
+
+        // Treating d-flex/d-none on separators with title
+        var SeparatorTitle = $('.sidebar-separator-title');
+        if (SeparatorTitle.hasClass('d-flex')) {
+            SeparatorTitle.removeClass('d-flex');
+        } else {
+            SeparatorTitle.addClass('d-flex');
+        }
+
+        // Collapse/Expand icon
+        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+    }
 </script>
