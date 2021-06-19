@@ -27,7 +27,7 @@ function iconColors($element)
 function hasSymptom($element)
 {
     if ($element == 0) {
-        return 'text-success';
+        return 'text-dark';
     } else {
         return 'text-danger';
     }

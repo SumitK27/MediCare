@@ -85,7 +85,7 @@ class Account
     public function getInfo()
     {
         if (isset($_SESSION["userLoggedIn"])) {
-            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name FROM users, user_role, roles WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
+            $query = $this->conn->prepare("SELECT users.user_id, users.first_name, users.last_name, users.email, roles.role_name, user_details.aadhaar_no, user_details.mobile, user_details.address, user_details.date_of_birth, user_details.gender FROM users, user_role, roles, user_details WHERE users.email=:em AND users.user_id = user_role.user_id AND user_role.role_id = roles.role_id");
             $query->bindValue(":em", $_SESSION["userLoggedIn"]);
             $query->execute();
             $userInfo = $query->fetchAll(PDO::FETCH_ASSOC);

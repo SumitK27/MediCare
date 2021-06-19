@@ -59,7 +59,7 @@ function getInputValue($name)
                 <!-- E-mail -->
                 <?php echo $account->getError(Constants::$emailInvalid); ?>
                 <?php echo $account->getError(Constants::$emailTaken); ?>
-                <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail" value="<?php getInputValue("email") ?>" maxlength="25" required>
+                <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail" value="<?php getInputValue("email") ?>" required>
 
                 <!-- Password -->
                 <?php echo $account->getError(Constants::$passwordsDontMatch); ?>

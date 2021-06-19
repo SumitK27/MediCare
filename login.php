@@ -42,7 +42,7 @@ $account = new Account($conn);
 
         $c_success = $account->c_login($c_email, $c_password);
 
-        if($c_success) {
+        if($c_success == 1) {
             $_SESSION["userLoggedIn"] = $c_email;
 
             header("Location: index.php");

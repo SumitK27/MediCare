@@ -65,7 +65,7 @@ function iconColors($element)
 function hasSymptom($element)
 {
     if ($element == 0) {
-        return 'text-success';
+        return 'text-dark';
     } else {
         return 'text-danger';
     }
@@ -82,6 +82,27 @@ function displayDate($element)
 ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+    .cube {
+        width: 10px;
+        height: 10px;
+    }
+
+    .text {
+        margin-left: 5px;
+    }
+
+    .text-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .indication-group {
+        display: flex;
+        justify-content: space-evenly;
+    }
+</style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -116,7 +137,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                     </div>
                 </a>
 
-                <a href="#n-pills-nurse" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="n-pills-nurse-tab" data-toggle="pill" role="tab" aria-controls="n-pills-nurse" aria-selected="true">
+                <a href="#n-pills-report" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="n-pills-report-tab" data-toggle="pill" role="tab" aria-controls="n-pills-report" aria-selected="true">
                     <div class="icon">
                         <span class="fas fa-notes-medical fa-fw mr-3"></span>
                         <span class="menu-collapsed">Report</span>
@@ -193,7 +214,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                                                     <label for="email">Email address</label>
                                                     <?php echo $account->getError(Constants::$emailInvalid); ?>
                                                     <?php echo $account->getError(Constants::$emailTaken); ?>
-                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" maxlength="25" value="<?php echo $userInfo['email'] ?>" required>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" value="<?php echo $userInfo['email'] ?>" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary col-12" name="updateInfo">Save</button>
                                             </div>
@@ -298,14 +319,8 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                     }
                     ?>
                 </div>
-                <div class="tab-pane fade" id="n-pills-nurse" role="tabpanel" aria-labelledby="n-pills-nurse-tab">
-                    <div class="col">
-                        <div class="tab-content" id="n-pills-tabContent">
-                            <div class="tab-pane fade show active" id="n-pills-nurse" role="tabpanel" aria-labelledby="n-pills-nurse-tab">
-                                <h5 class="text-center">Blank Page</h5>
-                            </div>
-                        </div>
-                    </div>
+                <div class="tab-pane fade" id="n-pills-report" role="tabpanel" aria-labelledby="n-pills-report-tab">
+                    <h5 class="text-center">Blank Page</h5>
                 </div>
             </div>
         </div>
@@ -418,7 +433,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor")
                                                     <label for="email">Email address</label>
                                                     <?php echo $account->getError(Constants::$emailInvalid); ?>
                                                     <?php echo $account->getError(Constants::$emailTaken); ?>
-                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" maxlength="25" value="<?php echo $userInfo['email'] ?>" required>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" value="<?php echo $userInfo['email'] ?>" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary col-12" name="updateInfo">Save</button>
                                             </div>
@@ -705,7 +720,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") 
                                                     <label for="email">Email address</label>
                                                     <?php echo $account->getError(Constants::$emailInvalid); ?>
                                                     <?php echo $account->getError(Constants::$emailTaken); ?>
-                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" maxlength="25" value="<?php echo $userInfo['email'] ?>" required>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" value="<?php echo $userInfo['email'] ?>" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary col-12" name="updateInfo">Save</button>
                                             </div>
@@ -966,17 +981,17 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                     </div>
                 </a>
 
-                <a href="#p-pills-patient" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="p-pills-patient-tab" data-toggle="pill" role="tab" aria-controls="p-pills-patient" aria-selected="true">
+                <a href="#p-pills-records" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="p-pills-records-tab" data-toggle="pill" role="tab" aria-controls="p-pills-records" aria-selected="true">
                     <div class="icon">
                         <span class="fas fa-hospital-user fa-fw mr-3"></span>
-                        <span class="menu-collapsed">Patients</span>
+                        <span class="menu-collapsed">Records</span>
                     </div>
                 </a>
 
-                <a href="#p-pills-nurse" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="p-pills-nurse-tab" data-toggle="pill" role="tab" aria-controls="p-pills-nurse" aria-selected="true">
+                <a href="#p-pills-report" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="p-pills-report-tab" data-toggle="pill" role="tab" aria-controls="p-pills-report" aria-selected="true">
                     <div class="icon">
                         <span class="fas fa-notes-medical fa-fw mr-3"></span>
-                        <span class="menu-collapsed">Report</span>
+                        <span class="menu-collapsed">Reports</span>
                     </div>
                 </a>
 
@@ -1050,7 +1065,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                                     <label for="email">Email address</label>
                                                     <?php echo $account->getError(Constants::$emailInvalid); ?>
                                                     <?php echo $account->getError(Constants::$emailTaken); ?>
-                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" maxlength="25" value="<?php echo $userInfo['email'] ?>" required>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email Address" value="<?php echo $userInfo['email'] ?>" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary col-12" name="updateInfo">Save</button>
                                             </div>
@@ -1089,7 +1104,7 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade show" id="p-pills-patient" role="tabpanel" aria-labelledby="p-pills-patient-tab">
+                <div class="tab-pane fade show" id="p-pills-records" role="tabpanel" aria-labelledby="p-pills-records-tab">
                     <button class="btn btn-primary float-right" onclick="location.href='note-symptoms.php?user_id=<?php echo $userInfo['user_id'] ?>'"><i class="fa fa-user-plus"></i>Add Symptoms</button>
                     <br><br>
                     <?php
@@ -1200,6 +1215,24 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                                 }
                                 ?>
                         </table>
+                        <div class="indication-group">
+                            <div class="text-group">
+                                <div class="cube bg-dark"></div>
+                                <div class="text">None</div>
+                            </div>
+                            <div class="text-group">
+                                <div class="cube bg-info"></div>
+                                <div class="text">Low</div>
+                            </div>
+                            <div class="text-group">
+                                <div class="cube bg-warning"></div>
+                                <div class="text">Medium</div>
+                            </div>
+                            <div class="text-group">
+                                <div class="cube bg-danger"></div>
+                                <div class="text">High</div>
+                            </div>
+                        </div>
                     <?php
                     } else {
                     ?>
@@ -1211,12 +1244,187 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
                     }
                     ?>
                 </div>
-                <div class="tab-pane fade" id="p-pills-nurse" role="tabpanel" aria-labelledby="p-pills-nurse-tab">
-                    <div class="col">
-                        <div class="tab-content" id="p-pills-tabContent">
-                            <div class="tab-pane fade show active" id="p-pills-nurse" role="tabpanel" aria-labelledby="p-pills-nurse-tab">
-                                <h5 class="text-center">Blank Page</h5>
+                <div class="tab-pane fade" id="p-pills-report" role="tabpanel" aria-labelledby="p-pills-report-tab">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1><?php echo $userInfo["first_name"] . " " . $userInfo["last_name"] ?> Details</h1>
+                            </h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="row justify-content-center bg-dark text-light">
+                                <h3>Personal Details</h3>
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" name="firstName" value="<?php echo $userInfo['first_name']; ?>">
+                                </div>
+                                <div class="col">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" name="lastName" value="<?php echo $userInfo['last_name'] ?>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                    <input type="text" class="form-control" name="mobileNumber" value="<?php echo $userInfo['mobile'] ?>">
+                                </div>
+                                <div class="col">
+                                    <label for="address">Address</label>
+                                    <textarea type="text" class="form-control" name="address"><?php echo $userInfo['address'] ?></textarea>
+                                </div>
+                                <div class="col">
+                                    <label for="mob-no">Aadhaar No</label>
+                                    <input type="text" class="form-control" name="aadhaar-no" value="<?php echo $userInfo['aadhaar_no'] ?>">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row justify-content-center bg-dark text-light">
+                                <h3>Medical Details</h3>
+                            </div>
+                            <?php
+                            $rows = $account->getUserSymptoms($userInfo['user_id']);
+                            if (count($rows) > 0) {
+                            ?>
+                                <table class="table table-responsive table-fluid myTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope='col'>Fever</th>
+                                            <th scope='col'>Cough</th>
+                                            <th scope='col'>Tiredness</th>
+                                            <th scope='col'>Chest Pain</th>
+                                            <th scope='col'>Head Ache</th>
+                                            <th scope='col'>Stomach Ache</th>
+                                            <th scope='col'>Oxygen Level</th>
+                                            <th scope='col'>Sore Throat</th>
+                                            <th scope='col'>Congestion</th>
+                                            <th scope='col'>Sense Loss</th>
+                                            <th scope='col'>Trouble Breathing</th>
+                                            <th scope='col'>Travelled</th>
+                                            <th scope='col'>Kidney Failure</th>
+                                            <th scope='col'>Heart Problem</th>
+                                            <th scope='col'>Diabetes</th>
+                                            <th scope='col'>Malignancy Cancer</th>
+                                            <th scope='col'>Hypertension</th>
+                                            <th scope='col'>Liver Disease</th>
+                                            <th scope='col'>Immunocompromised Condition</th>
+                                            <th scope='col'>Vomiting</th>
+                                            <th scope='col'>Consume Steroids</th>
+                                            <th scope='col'>Diarrhea</th>
+                                            <th scope='col'>Skin Rash Discoloration</th>
+                                            <th scope='col'>Chills</th>
+                                            <th scope='col'>Contacted COVID Positive</th>
+                                            <th scope='col'>COVID Positive</th>
+                                            <th scope='col'>1st Dose</th>
+                                            <th scope='col'>2nd Dose</th>
+                                            <th scope='col'>Quarantine</th>
+                                            <th scope='col'>Tested At</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach ($rows as $row) {
+                                        ?>
+                                            <tr>
+                                                <th scope='row'><button class="form-control"><i class="fa fa-thermometer-half icons <?php echo iconColors($row['fever_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fa fa-head-side-cough icons <?php echo iconColors($row['cough_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fa fa-tired icons <?php echo iconColors($row['tiredness_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['chest_pain_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fa fa-head-side-virus icons <?php echo iconColors($row['head_ache_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['stomach_ache_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['less_oxygen_level_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['sore_throat_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['congestion_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['sense_loss_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['trouble_breathing_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-map-marked-alt icons <?php echo hasSymptom($row['travelled']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['kidney_failure']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['heart_problem_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diabetes_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['malignancy_cancer_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['hypertension_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['liver_disease']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-ban icons <?php echo iconColors($row['immunocompromised_condition_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['vomiting_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-capsules icons <?php echo hasSymptom($row['consume_steroids']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diarrhea_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-allergies icons <?php echo hasSymptom($row['skin_rash_discoloration']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-snowflake icons <?php echo iconColors($row['chills_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-people-arrows icons <?php echo hasSymptom($row['contact_positive']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-virus icons <?php echo hasSymptom($row['is_positive']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'> <?php echo displayDate($row['is_vaccinated_d']); ?> </th>
+
+                                                <th scope='row'> <?php echo displayDate($row['is_vaccinated_2_d']); ?> </th>
+
+                                                <th scope='row'><button class="form-control"><i class="fas fa-procedures icons <?php echo hasSymptom($row['quarantine']) ?>" aria-hidden="true"></i></button></th>
+
+                                                <th scope='row'> <?php echo $row['date_tested']; ?> </th>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                </table>
+                                <div class="indication-group">
+                                    <div class="text-group">
+                                        <div class="cube bg-dark"></div>
+                                        <div class="text">None</div>
+                                    </div>
+                                    <div class="text-group">
+                                        <div class="cube bg-info"></div>
+                                        <div class="text">Low</div>
+                                    </div>
+                                    <div class="text-group">
+                                        <div class="cube bg-warning"></div>
+                                        <div class="text">Medium</div>
+                                    </div>
+                                    <div class="text-group">
+                                        <div class="cube bg-danger"></div>
+                                        <div class="text">High</div>
+                                    </div>
+                                </div>
+                            <?php
+                            } else {
+                            ?>
+                                <strong>
+                                    <span class='alert alert-danger row justify-content-center align-items-center'>0
+                                        Results<span>
+                                </strong>
+                            <?php
+                            }
+                            ?>
+                            <hr>
+                            <div class="row justify-content-center bg-dark text-light">
+                                <h3>Report History</h3>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary float-right"><i class="fa fa-print" onclick="window.print();"></i> Print</button>
                         </div>
                     </div>
                 </div>
@@ -1227,7 +1435,8 @@ else if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient"
 }
 /* ------------------------------ End of Patient Dashboard ------------------------------*/
 
-/* ------------------------------ If Not Logged In ------------------------------ */ else {
+/* ------------------------------ If Not Logged In ------------------------------ */ 
+else {
     //  if not logged in
     header("Location: login.php");
     print_r($_SESSION["userLoggedIn"]);
@@ -1243,7 +1452,7 @@ require_once('./includes/importsAfter.php');
         ]
     });
 
-    // Hide submenus
+    // Hide sub menus
     $('#body-row .collapse').collapse('hide');
 
     // Collapse/Expand icon
@@ -1254,9 +1463,9 @@ require_once('./includes/importsAfter.php');
         SidebarCollapse();
         iconScale();
     });
-    
-    $(document).ready(function () {
-        if($(window).width() < 786) {
+
+    $(document).ready(function() {
+        if ($(window).width() < 786) {
             SidebarCollapse();
             iconScale();
         }
@@ -1274,11 +1483,11 @@ require_once('./includes/importsAfter.php');
             $('.loggedIn').hide();
         }
     };
-        
+
     function SidebarCollapse() {
         $('.menu-collapsed').toggleClass('d-none');
-        $('.sidebar-submenu').toggleClass('d-none');
-        $('.submenu-icon').toggleClass('d-none');
+        $('.sidebar-subMenu').toggleClass('d-none');
+        $('.subMenu-icon').toggleClass('d-none');
         $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapse');
 
         // Treating d-flex/d-none on separators with title
