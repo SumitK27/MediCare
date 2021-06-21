@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2021 at 01:44 PM
+-- Generation Time: Jun 21, 2021 at 08:32 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -86,7 +86,12 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`) 
 (24, 'Patient', 'P19', 'patient19@email.com', ''),
 (25, 'Patient', 'P20', 'patient20@email.com', ''),
 (26, 'Patient', 'P21', 'patient21@email.com', 'a177423349e6e28785622b833b43b291f34e7605daedbd1e7ca6e0da14b5ce88c1e278f9b34631872803b1a0675081eaa89d2cf1565d1a11799b2a14f0dda2e2'),
-(27, 'Patient', 'P25', 'patient25@email.com', 'fd658b2115aaf6592720b9ecfb35cdc86079b5040528c62adaa2d07d1910da56f38ea61ff66b72cf30eac023da52a7d599d5fe47dbe83350148b870d371772d6');
+(27, 'Patient', 'P25', 'patient25@email.com', 'fd658b2115aaf6592720b9ecfb35cdc86079b5040528c62adaa2d07d1910da56f38ea61ff66b72cf30eac023da52a7d599d5fe47dbe83350148b870d371772d6'),
+(28, 'Patient', 'P26', 'patient26@email.com', '0a6e978817f18ecf8a0645bd7487e12883c33bfe138fccdbf6abbe251d99753a7e0619b713849f53fb17745b5acfbdc42eb809c2fae3a292e1f6a90f74e4beb0'),
+(29, 'Patient', 'P27', 'patinet27@email.com', '8ccac65881abec19fa07087b1049f8d1920b6209b9b5b3669779fd15ab54049c5afcc5a9a0639a07164a62b12b06e3be676e29f39c82dfa9cf835ebd6c6c3b22'),
+(30, 'Nurse', 'N3', 'nurse3@email.com', '57998f8b306cae8fd7244eb15d564766f0c0f12ddf9fedf786a142f615055ba4943f02c7e4af4f51302a6845224f3d7c6dc55ab6116f0dbf1ce69cc075efacff'),
+(31, 'Doctor', 'D2', 'doctor2@email.com', '265eec157c4004d1da2535def1ff5c0dd58cd6ae86e6bb87f836433fa7920c0073ba277f70678e9efa00e62ab0a51706afe3559a68a1c1640a999b6082e98a82'),
+(32, 'Patient', 'P28', 'patient28@email.com', 'fd658b2115aaf6592720b9ecfb35cdc86079b5040528c62adaa2d07d1910da56f38ea61ff66b72cf30eac023da52a7d599d5fe47dbe83350148b870d371772d6');
 
 -- --------------------------------------------------------
 
@@ -110,6 +115,7 @@ INSERT INTO `user_added_by` (`nurse_id`, `user_id`) VALUES
 (13, 8),
 (13, 9),
 (2, 12),
+(3, 13),
 (13, 14),
 (4, 15),
 (4, 16),
@@ -123,7 +129,10 @@ INSERT INTO `user_added_by` (`nurse_id`, `user_id`) VALUES
 (4, 24),
 (2, 25),
 (2, 26),
-(2, 27);
+(2, 27),
+(3, 30),
+(4, 31),
+(30, 32);
 
 -- --------------------------------------------------------
 
@@ -154,7 +163,10 @@ INSERT INTO `user_details` (`user_id`, `aadhaar_no`, `mobile`, `address`, `date_
 (24, 123456789016, 123456789, 'Nowhere', '2021-05-31', 'Male'),
 (25, 123456789009, 1234567890, 'Somewhere', '2010-01-02', 'Female'),
 (26, 123456789008, 1234567890, 'Somewhere', '2010-01-19', 'Female'),
-(27, 123456789000, 123456789, 'hyadjvasvd', '2021-06-03', 'Male');
+(27, 123456789000, 123456789, 'hyadjvasvd', '2021-06-03', 'Male'),
+(30, 333333333333, 2147483647, 'Somewhere in India', '2021-06-21', 'Female'),
+(31, 222222222222, 2147483647, 'Somewhere in UK', '2021-06-21', 'Male'),
+(32, 282828282828, 2147483647, 'Somewhere in Russia', '2021-06-21', 'Male');
 
 -- --------------------------------------------------------
 
@@ -197,7 +209,12 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (24, 1),
 (25, 1),
 (26, 1),
-(27, 1);
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 2),
+(31, 3),
+(32, 1);
 
 -- --------------------------------------------------------
 
@@ -270,7 +287,8 @@ CREATE TABLE `user_symptoms` (
 INSERT INTO `user_symptoms` (`user_id`, `fever`, `fever_s`, `cough`, `cough_s`, `tiredness`, `tiredness_s`, `chest_pain`, `chest_pain_s`, `head_ache`, `head_ache_s`, `stomach_ache`, `stomach_ache_s`, `kidney_failure`, `heart_problem`, `heart_problem_s`, `diabetes`, `diabetes_s`, `less_oxygen_level`, `less_oxygen_level_s`, `malignancy_cancer`, `malignancy_cancer_s`, `hypertension`, `hypertension_s`, `liver_disease`, `liver_disease_s`, `immunocompromised_condition`, `immunocompromised_condition_s`, `vomiting`, `vomiting_s`, `consume_steroids`, `sore_throat`, `sore_throat_s`, `diarrhea`, `diarrhea_s`, `congestion`, `congestion_s`, `sense_loss`, `sense_loss_s`, `skin_rash_discoloration`, `skin_rash_discoloration_s`, `trouble_breathing`, `trouble_breathing_s`, `contact_positive`, `is_positive`, `is_vaccinated`, `is_vaccinated_d`, `is_vaccinated_2`, `is_vaccinated_2_d`, `travelled`, `chills`, `chills_s`, `quarantine`, `quarantine_s`, `date_tested`) VALUES
 (1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, '2021-06-06 00:00:00', 0, '0000-00-00 00:00:00', 1, 0, 1, 0, 0, '2021-06-06 00:33:47'),
 (1, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 0, '2021-06-06 15:18:38'),
-(1, 1, 1, 1, 2, 1, 3, 1, 1, 1, 2, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 2, 1, 3, 1, 0, 1, 1, 1, 2, 1, 1, 2, 1, 3, 1, 3, 1, 1, 1, 0, 1, 2, 1, 1, 1, '2021-04-06 00:00:00', 1, '2021-06-06 00:00:00', 1, 1, 1, 1, 0, '2021-06-06 15:56:49');
+(1, 1, 1, 1, 2, 1, 3, 1, 1, 1, 2, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 2, 1, 3, 1, 0, 1, 1, 1, 2, 1, 1, 2, 1, 3, 1, 3, 1, 1, 1, 0, 1, 2, 1, 1, 1, '2021-04-06 00:00:00', 1, '2021-06-06 00:00:00', 1, 1, 1, 1, 0, '2021-06-06 15:56:49'),
+(1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 0, '2021-06-19 17:19:38');
 
 --
 -- Indexes for dumped tables
@@ -328,7 +346,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
