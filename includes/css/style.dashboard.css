@@ -1,0 +1,18 @@
+.cube {
+    width: 10px;
+    height: 10px;
+}
+
+.text {
+    margin-left: 5px;
+}
+
+.text-group {
+    display: flex;
+    align-items: center;
+}
+
+.indication-group {
+    display: flex;
+    justify-content: space-evenly;
+}

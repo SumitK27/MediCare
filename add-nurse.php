@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
     $dob = $_POST["dob"];
     $gen = $_POST["gender"];
 
-    $success = $account->addUser($firstName, $lastName, $email, $adh, $mob, $addr, $dob, $gen, $userInfo['user_id'], 1);
+    $success = $account->addUser($firstName, $lastName, $email, $adh, $mob, $addr, $dob, $gen, $userInfo['user_id'], 2);
 
     if ($success) {
         echo "<div class='alert alert-success'>Patient Added Successfully</div>";
@@ -39,7 +39,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Nur
 
     <div class="container">
         <div class="text-center mt-5">
-            <h1>Add Patient Details</h1>
+            <h1>Add Nurse Details</h1>
         </div>
 
         <div class="row">
