@@ -1,43 +1,5 @@
 <title>Dashboard</title>
 
-<style>
-    #sidebar-container {
-        min-height: 100vh;
-        background-color: #333;
-        padding: 0;
-    }
-
-    /* Sidebar sizes when expanded and expanded */
-    .sidebar-expanded {
-        width: 230px;
-    }
-
-    .sidebar-collapsed {
-        width: 90px;
-    }
-
-    /* Menu item*/
-    #sidebar-container .list-group a {
-        height: 50px;
-        color: white;
-    }
-
-    .loggedIn {
-        height: 100px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .collapsed-icons {
-        display: flex;
-        justify-content: flex-end;
-        align-content: center;
-        transform: scale(1.2);
-    }
-</style>
-
 <?php
 require_once('./includes/imports.php');
 require_once('./includes/config.php');
@@ -1421,7 +1383,8 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
 /* ------------------------------ End of Admin Dashboard ------------------------------ */
 
 
-/* ------------------------------ If Not Logged In ------------------------------ */ else {
+/* ------------------------------ If Not Logged In ------------------------------ */ 
+else {
     //  if not logged in
     header("Location: login.php");
     print_r($_SESSION["userLoggedIn"]);
