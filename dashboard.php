@@ -707,7 +707,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                     </div>
                 </div>
                 <div class="tab-pane fade show" id="n-pills-patient" role="tabpanel" aria-labelledby="n-pills-patient-tab">
-                    <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fa fa-user-plus"></i>Add Patient</button>
+                    <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fas fa-hospital-user"></i>Add Patient</button>
                     <br><br>
                     <?php
                     $rows = $account->getUserTypeCreatedByMe($getInfo['user_id'], "Patient");
@@ -753,7 +753,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
                                                     <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
                                                 </div>
                                                 <div class="col">
-                                                    <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash"></i></a>
+                                                    <a href="delete.php?user_id=<?php echo $row["user_id"] ?>"><i class="fa fa-trash"></i></a>
                                                 </div>
                                             </div>
                                         </th>
@@ -926,7 +926,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") 
                     </div>
                 </div>
                 <div class="tab-pane fade show" id="d-pills-patient" role="tabpanel" aria-labelledby="d-pills-patient-tab">
-                    <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fa fa-user-plus"></i> Add Patient</button>
+                    <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fas fa-hospital-user"></i> Add Patient</button>
                     <br><br>
                     <?php
                     // $rows = $account->getUserType("Patient");
@@ -965,7 +965,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") 
                                                         <a href='user-details.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-id-card-alt" aria-hidden="true"></i></a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href='note-symptoms.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-id-card-alt" aria-hidden="true"></i></a>
+                                                        <a href='note-symptoms.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-calendar-plus" aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
                                             </th>
@@ -975,7 +975,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") 
                                                         <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash"></i></a>
+                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>"><i class="fa fa-trash"></i></a>
                                                     </div>
                                                 </div>
                                             </th>
@@ -999,7 +999,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") 
                 <div class="tab-pane fade" id="d-pills-nurse" role="tabpanel" aria-labelledby="d-pills-nurse-tab">
                     <div class="col">
                         <div class="tab-pane fade show active" id="d-pills-nurse" role="tabpanel" aria-labelledby="d-pills-nurse-tab">
-                            <button class="btn btn-primary float-right" onclick="location.href='add-nurse.php'"><i class="fa fa-user-plus"></i> Add Nurse</button>
+                            <button class="btn btn-primary float-right" onclick="location.href='add-nurse.php'"><i class="fas fa-user-nurse"></i> Add Nurse</button>
                             <br><br>
                             <?php
                             $rows = $account->getUserTypeCreatedByMe($getInfo['user_id'], "Nurse");
@@ -1034,7 +1034,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") 
                                                             <a href='user-details.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-id-card-alt" aria-hidden="true"></i></a>
                                                         </div>
                                                         <div class="col">
-                                                            <a href='note-symptoms.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-id-card-alt" aria-hidden="true"></i></a>
+                                                            <a href='note-symptoms.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-calendar-plus" aria-hidden="true"></i></a>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -1044,7 +1044,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") 
                                                             <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
                                                         </div>
                                                         <div class="col">
-                                                            <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash"></i></a>
+                                                            <a href="delete.php?user_id=<?php echo $row["user_id"] ?>"><i class="fa fa-trash"></i></a>
                                                         </div>
                                                     </div>
                                                 </th>
@@ -1225,7 +1225,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                 </div>
                 <div class="tab-pane fade" id="a-pills-patient" role="tabpanel" aria-labelledby="a-pills-patient-tab">
                     <div class="col">
-                        <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fa fa-user-plus"></i> Add Patient</button>
+                        <button class="btn btn-primary float-right" onclick="location.href='add-patient.php'"><i class="fas fa-hospital-user"></i> Add Patient</button>
                         <br><br>
                         <?php
                         $rows = $account->getUserType("Patient");
@@ -1260,7 +1260,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                                                         <a href='user-details.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-id-card-alt" aria-hidden="true"></i></a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href='note-symptoms.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-id-card-alt" aria-hidden="true"></i></a>
+                                                        <a href='note-symptoms.php?user_id=<?php echo $row['user_id'] ?>'><i class="fas fa-calendar-plus" aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
                                             </th>
@@ -1270,7 +1270,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                                                         <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash"></i></a>
+                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>"><i class="fa fa-trash"></i></a>
                                                     </div>
                                                 </div>
                                             </th>
@@ -1293,7 +1293,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                 </div>
                 <div class="tab-pane fade" id="a-pills-nurse" role="tabpanel" aria-labelledby="a-pills-nurse-tab">
                     <div class="col">
-                        <button class="btn btn-primary float-right" onclick="location.href='add-nurse.php'"><i class="fa fa-user-plus"></i> Add Nurse</button>
+                        <button class="btn btn-primary float-right" onclick="location.href='add-nurse.php'"><i class="fas fa-user-nurse"></i> Add Nurse</button>
                         <br><br>
                         <?php
                         $rows = $account->getUserType("Nurse");
@@ -1331,7 +1331,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                                                         <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash"></i></a>
+                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>"><i class="fa fa-trash"></i></a>
                                                     </div>
                                                 </div>
                                             </th>
@@ -1354,7 +1354,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                 </div>
                 <div class="tab-pane fade" id="a-pills-doctor" role="tabpanel" aria-labelledby="a-pills-doctor-tab">
                     <div class="col">
-                        <button class="btn btn-primary float-right" onclick="location.href='add-doctor.php'"><i class="fa fa-user-plus"></i> Add Doctor</button>
+                        <button class="btn btn-primary float-right" onclick="location.href='add-doctor.php'"><i class="fas fa-user-md"></i> Add Doctor</button>
                         <br><br>
                         <?php
                         $rows = $account->getUserType("Doctor");
@@ -1392,7 +1392,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                                                         <a href='edit.php?user_id=<?php echo $row["user_id"] ?>'><i class="fa fa-edit"></i></a>
                                                     </div>
                                                     <div class="col">
-                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>'"><i class="fa fa-trash"></i></a>
+                                                        <a href="delete.php?user_id=<?php echo $row["user_id"] ?>"><i class="fa fa-trash"></i></a>
                                                     </div>
                                                 </div>
                                             </th>
