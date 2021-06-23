@@ -76,7 +76,7 @@ CREATE TABLE `user_added_by` (
 CREATE TABLE `user_details` (
   `user_id` int(11) NOT NULL,
   `aadhaar_no` bigint(20) DEFAULT NULL,
-  `mobile` int(11) DEFAULT NULL,
+  `mobile` bigint(20) DEFAULT NULL,
   `address` varchar(250) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
   `gender` varchar(11) DEFAULT NULL
@@ -202,6 +202,8 @@ ALTER TABLE `user_symptoms`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `roles`

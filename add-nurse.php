@@ -1,4 +1,4 @@
-<title>Add Patient Details</title>
+<title>Add Nurse Details</title>
 <?php
 require_once('./includes/imports.php');
 require_once('./includes/config.php');

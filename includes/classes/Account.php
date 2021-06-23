@@ -11,17 +11,21 @@ class Account
     }
 
     /* Register */
-    public function register($fn, $ln, $em, $pw, $pw2, $rl)
+    public function register($fn, $ln, $em, $pw, $pw2, $adh, $mob, $addr, $dob, $gen, $rl)
     {
         $this->validateName($fn);
         $this->validateName($ln);
         $this->validateEmail($em);
         $this->validatePassword($pw, $pw2);
+        $this->validateAadhaar($adh);
+        $this->validateContact($mob);
+        $this->validateAddress($addr);
+        $this->validateDOB($dob);
 
         if (empty($this->errorArray)) {
-            return $this->insertUserDetails($fn, $ln, $em, $pw, $rl);
+            $this->insertUserDetails($fn, $ln, $em, $pw, $adh, $mob, $addr, $dob, $gen, $rl);
+            return true;
         }
-
         return false;
     }
 
@@ -37,8 +41,7 @@ class Account
         $pass = $this->generatePassword($fn, $dob);
 
         if (empty($this->errorArray)) {
-            $this->addPatient($fn, $ln, $em, $pass
-        );
+            $this->addPatient($fn, $ln, $em, $pass);
             $lastId = $this->conn->lastInsertId();
             echo $lastId;
             $this->assignRole($lastId, $rl);
@@ -162,7 +165,7 @@ class Account
         $query->execute();
     }
 
-    private function insertUserDetails($fn, $ln, $em, $pw, $rl)
+    private function insertUserDetails($fn, $ln, $em, $pw, $adh, $mob, $addr, $dob, $gen, $rl)
     {
         $pw = hash("sha512", $pw);
 
@@ -175,8 +178,9 @@ class Account
 
         $lastId = $this->conn->lastInsertId();
         $this->assignRole($lastId, $rl);
+        $this->addPersonalDetails($lastId, $adh, $mob, $addr, $dob, $gen);
 
-        return true;
+        return;
     }
 
     private function addPersonalDetails($id, $adh, $mob, $addr, $dob, $gen)
@@ -255,13 +259,11 @@ class Account
     /* Updating Info */
     public function updateUser($id, $fn, $ln, $em, $ut)
     {
-        $query = $this->conn->prepare("UPDATE users SET user_id=:id, first_name=:fn, last_name=:ln, email=:em WHERE user_id=:id");
+        $query = $this->conn->prepare("UPDATE users SET first_name=:fn, last_name=:ln, email=:em WHERE user_id=:id");
         $query->bindValue(":id", $id);
         $query->bindValue(":fn", $fn);
         $query->bindValue(":ln", $ln);
         $query->bindValue(":em", $em);
-        $query->bindValue(":ut", $ut);
-        // header("Location: dashboard-doctor.php");
         return $query->execute();
     }
 
@@ -417,7 +419,7 @@ class Account
     public function getError($error)
     {
         if (in_array($error, $this->errorArray)) {
-            return "<h6 class='alert alert-danger'>" . $error . "</h6>";
+            return "<h6 class='col-12 text-center alert alert-danger'>" . $error . "</h6>";
         }
     }
 }

@@ -68,7 +68,7 @@
                             <label for="email">Email address</label>
                             <?php echo $account->getError(Constants::$emailInvalid); ?>
                             <?php echo $account->getError(Constants::$emailTaken); ?>
-                            <input type="email" class="form-control" name="email" placeholder="Enter your Email Address" maxlength="25" value="<?php echo $userInfo['email'] ?>" required>
+                            <input type="email" class="form-control" name="email" placeholder="Enter your Email Address" value="<?php echo $userInfo['email'] ?>" required>
                         </div>
                     </div>
                     <div class="col-6">
