@@ -183,6 +183,18 @@ class Account
         return;
     }
 
+    public function insertContact($fn, $ln, $em, $ty, $msg){
+        $query = $this->conn->prepare("INSERT INTO contact(first_name, last_name, email, type, message) VALUES(:fn, :ln, :em, :ty, :msg)");
+        $query->bindValue(":fn", $fn);
+        $query->bindValue(":ln", $ln);
+        $query->bindValue(":em", $em);
+        $query->bindValue(":ty", $ty);
+        $query->bindValue(":msg", $msg);
+        $query->execute();
+
+        return true;
+    }
+
     private function addPersonalDetails($id, $adh, $mob, $addr, $dob, $gen)
     {
         $query = $this->conn->prepare("INSERT INTO user_details VALUES (:id, :adh, :mob, :addr, :dob, :gen)");

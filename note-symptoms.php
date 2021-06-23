@@ -97,6 +97,8 @@ if (isset($_POST['submit'])) {
     $quarantine = yesOrNo($_POST['quarantine']);
 
     $success = $account->addMedicalRecords($id, $fever, $fever_s, $cough, $cough_s, $tiredness, $tiredness_s, $chest_pain, $chest_pain_s, $head_ache, $head_ache_s, $stomach_ache, $stomach_ache_s, $kidney_failure, $heart_problem, $heart_problem_s, $diabetes, $diabetes_s, $less_oxygen_level, $less_oxygen_level_s, $malignancy_cancer, $malignancy_cancer_s, $hypertension, $hypertension_s, $liver_disease, $liver_disease_s, $immunocompromised_condition, $immunocompromised_condition_s, $vomiting, $vomiting_s, $consume_steroids, $sore_throat, $sore_throat_s, $diarrhea, $diarrhea_s, $congestion, $congestion_s, $sense_loss, $sense_loss_s, $skin_rash_discoloration, $skin_rash_discoloration_s, $trouble_breathing, $trouble_breathing_s, $contact_positive, $is_positive, $is_vaccinated, $is_vaccinated_d, $is_vaccinated_2, $is_vaccinated_2_d, $travelled, $chills, $chills_s, $quarantine);
+
+    header("Location: ./dashboard.php");
 }
 
 function yesOrNo($value)

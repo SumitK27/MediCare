@@ -6,6 +6,24 @@ $account = new Account($conn);
 $userInfo = $account->getInfo();
 require_once('./includes/components/navbar.php');
 require_once('./includes/importsAfter.php');
+
+if (isset($_POST['submit'])) {
+    if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['type']) && isset($_POST['message'])) {
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $type = $_POST['type'];
+        $message = $_POST['message'];
+
+        $success = $account->insertContact($first_name, $last_name, $email, $type, $message);
+
+        if ($success) {
+            $status = "<h4 class='col text-center alert alert-success'>Your request has been sent successfully</h4>";
+        }
+    } else {
+        $status = "<h4 class='col text-center alert alert-danger'>Error occurred while submitting your request</h4>";
+    }
+}
 ?>
 
 <title>Contact Us</title>
@@ -25,16 +43,19 @@ require_once('./includes/importsAfter.php');
                 <div class="card mt-2 mx-auto p-4 bg-light">
                     <div class="card-body bg-light">
                         <div class="container">
-                            <form id="contact-form" role="form">
+                            <form id="contact-form" role="form" method="POST">
                                 <div class="controls">
 
+                                    <div class="row">
+                                        <?php echo isset($status) ? $status : "" ?>
+                                    </div>
                                     <!--Name row-->
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group"> <label for="form_name">First Name *</label> <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your first name *" required="required" data-error="First name is required."> </div>
+                                            <div class="form-group"> <label for="form_name">First Name *</label> <input id="form_name" type="text" name="first_name" class="form-control" placeholder="Please enter your first name *" required="required" data-error="First name is required."> </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group"> <label for="form_last name">Last name *</label> <input id="form_last name" type="text" name="surname" class="form-control" placeholder="Please enter your last name *" required="required" data-error="Last name is required."> </div>
+                                            <div class="form-group"> <label for="form_last name">Last name *</label> <input id="form_last name" type="text" name="last_name" class="form-control" placeholder="Please enter your last name *" required="required" data-error="Last name is required."> </div>
                                         </div>
                                     </div>
                                     <!--End name row-->
@@ -46,12 +67,12 @@ require_once('./includes/importsAfter.php');
                                             <div class="form-group"> <label for="form_email">Email *</label> <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required."> </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group"> <label for="form_need">Choose Option *</label> <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                                            <div class="form-group"> <label for="form_need">Choose Option *</label> <select id="form_need" name="type" class="form-control" required="required" data-error="Please specify your need.">
                                                     <option value="" selected disabled>--Select Your Option--</option>
-                                                    <option>Feedback</option>
-                                                    <option>Report a bug</option>
-                                                    <option>Feature request</option>
-                                                    <option>Other</option>
+                                                    <option value="Feedback">Feedback</option>
+                                                    <option value="Report a bug">Report a bug</option>
+                                                    <option value="Feature Request">Feature request</option>
+                                                    <option value="Other">Other</option>
                                                 </select> </div>
                                         </div>
                                     </div>
@@ -78,7 +99,7 @@ require_once('./includes/importsAfter.php');
                                         </div>
                                         <br>
                                         <br>
-                                        <div class="col-md-12"> <input type="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message"> </div>
+                                        <div class="col-md-12"> <input type="submit" name="submit" class="btn btn-success btn-send pt-2 btn-block " value="Send Message"> </div>
                                     </div>
                                     <!--End Checkbox+Submit btn-->
                                 </div>

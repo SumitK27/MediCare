@@ -18,8 +18,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `experteze2`
+-- Database: `experteze`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(25) NOT NULL,
+  `last_name` varchar(25) NOT NULL,
+  `email` int(60) NOT NULL,
+  `type` varchar(25) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `first_name`, `last_name`, `email`, `type`, `message`) VALUES
+(1, 'Someone', 'S1', 0, 'Feedback', 'Something here'),
+(2, 'Someone', 'S2', 0, 'Report a bug', 'Some more thing here'),
+(3, 'Someone', 'S3', 0, 'Feature Request', 'So much here');
 
 -- --------------------------------------------------------
 
