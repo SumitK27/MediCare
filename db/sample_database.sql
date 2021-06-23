@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2021 at 08:32 PM
+-- Generation Time: Jun 23, 2021 at 06:45 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `experteze`
+-- Database: `experteze2`
 --
 
 -- --------------------------------------------------------
@@ -61,37 +61,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`) VALUES
-(1, 'Patient', 'P1', 'patient1@email.com', '7249334c32fc05f3c7565f315c09f5cb40ba40fccad8a39a7b0e488e34b3db0526e6367615d22378c9e630939dff5037c61cb7cd4ffadb858d44e4ef56e02986'),
-(2, 'Nurse', 'N1', 'nurse1@email.com', '879f462eb1c099163979703af179798bd546f9c7f62f454ba0bf9d2728095cb44f937a66345a78815935ecf8a21e63d0f1aa30cef09ac53ea437c05b21ad681f'),
-(3, 'Doctor', 'D1', 'doctor1@email.com', '31eaa11290dce6a3707298c0115fb671530f8cb9d7ad96132b61825c5e86d8e3d01a73c9b3d6cf93b7daff017ff961c1fe20388430079d995a9833bde776e2f7'),
-(4, 'Admin', 'A1', 'admin1@email.com', '43192475f95e3820fe441daaff7c84d9b73ca3a5afc7309ae03f783151b6b0976e4d68cd990f97ad0d65ca640d35a407199d6d7510f1dff5477b8cfce1531475'),
-(6, 'Patient', 'P2', 'patient2@email.com', ''),
-(7, 'Patient', 'P3', 'patient3@email.com', ''),
-(8, 'Patient', 'P4', 'patient4@email.com', ''),
-(9, 'Patient', 'P5', 'patient5@email.com', ''),
-(10, 'Patient', 'P6', 'patient6@email.com', ''),
-(11, 'Patient', 'P7', 'patient7@email.com', ''),
-(12, 'Patient', 'P8', 'patient8@email.com', ''),
-(13, 'Nurse', 'N2', 'nurse2@email.com', '3610d74dfd7159dfbc3f1dedb0fe97567bfe7652779b952f69d3e8d450d093d0a3c0e86fbc7921c39348d3808cf3c5d18ce4f961593270a2ed22effccfcee7eb'),
-(14, 'Patient', 'P9', 'patient9@email.com', ''),
-(15, 'Patient', 'P10', 'patient10@email.com', ''),
-(16, 'Patient', 'P11', 'patient11@email.com', ''),
-(17, 'Patient', 'P12', 'patient12@email.com', ''),
-(18, 'Patient', 'P13', 'patient13@email.com', ''),
-(19, 'Patient', 'P14', 'patient14@email.com', ''),
-(20, 'Patient', 'P15', 'patient15@email.com', ''),
-(21, 'Patient', 'P16', 'patient16@email.com', ''),
-(22, 'Patient', 'P17', 'patient17@email.com', ''),
-(23, 'Patient', 'P18', 'patient18@email.com', ''),
-(24, 'Patient', 'P19', 'patient19@email.com', ''),
-(25, 'Patient', 'P20', 'patient20@email.com', ''),
-(26, 'Patient', 'P21', 'patient21@email.com', 'a177423349e6e28785622b833b43b291f34e7605daedbd1e7ca6e0da14b5ce88c1e278f9b34631872803b1a0675081eaa89d2cf1565d1a11799b2a14f0dda2e2'),
-(27, 'Patient', 'P25', 'patient25@email.com', 'fd658b2115aaf6592720b9ecfb35cdc86079b5040528c62adaa2d07d1910da56f38ea61ff66b72cf30eac023da52a7d599d5fe47dbe83350148b870d371772d6'),
-(28, 'Patient', 'P26', 'patient26@email.com', '0a6e978817f18ecf8a0645bd7487e12883c33bfe138fccdbf6abbe251d99753a7e0619b713849f53fb17745b5acfbdc42eb809c2fae3a292e1f6a90f74e4beb0'),
-(29, 'Patient', 'P27', 'patinet27@email.com', '8ccac65881abec19fa07087b1049f8d1920b6209b9b5b3669779fd15ab54049c5afcc5a9a0639a07164a62b12b06e3be676e29f39c82dfa9cf835ebd6c6c3b22'),
-(30, 'Nurse', 'N3', 'nurse3@email.com', '57998f8b306cae8fd7244eb15d564766f0c0f12ddf9fedf786a142f615055ba4943f02c7e4af4f51302a6845224f3d7c6dc55ab6116f0dbf1ce69cc075efacff'),
-(31, 'Doctor', 'D2', 'doctor2@email.com', '265eec157c4004d1da2535def1ff5c0dd58cd6ae86e6bb87f836433fa7920c0073ba277f70678e9efa00e62ab0a51706afe3559a68a1c1640a999b6082e98a82'),
-(32, 'Patient', 'P28', 'patient28@email.com', 'fd658b2115aaf6592720b9ecfb35cdc86079b5040528c62adaa2d07d1910da56f38ea61ff66b72cf30eac023da52a7d599d5fe47dbe83350148b870d371772d6');
+(1, 'Admin', 'A1', 'admin1@email.com', '43192475f95e3820fe441daaff7c84d9b73ca3a5afc7309ae03f783151b6b0976e4d68cd990f97ad0d65ca640d35a407199d6d7510f1dff5477b8cfce1531475'),
+(2, 'Admin', 'A2', 'admin2@email.com', 'f08bf04ffe5c88a8961792dd8de4442c6b9bcee2bd89a41d54bdd6eae0e9d201af5c12921f72a147636f9493ef4b6448608316b3a9a962b1b8df2fb06f1f6743'),
+(3, 'Doctor', 'D1', 'doctor1@email.com', '265eec157c4004d1da2535def1ff5c0dd58cd6ae86e6bb87f836433fa7920c0073ba277f70678e9efa00e62ab0a51706afe3559a68a1c1640a999b6082e98a82'),
+(4, 'Doctor', 'D2', 'doctor2@email.com', '265eec157c4004d1da2535def1ff5c0dd58cd6ae86e6bb87f836433fa7920c0073ba277f70678e9efa00e62ab0a51706afe3559a68a1c1640a999b6082e98a82'),
+(5, 'Nurse', 'N1', 'nurse1@email.com', '57998f8b306cae8fd7244eb15d564766f0c0f12ddf9fedf786a142f615055ba4943f02c7e4af4f51302a6845224f3d7c6dc55ab6116f0dbf1ce69cc075efacff'),
+(6, 'Nurse', 'N2', 'nurse2@email.com', '57998f8b306cae8fd7244eb15d564766f0c0f12ddf9fedf786a142f615055ba4943f02c7e4af4f51302a6845224f3d7c6dc55ab6116f0dbf1ce69cc075efacff'),
+(7, 'Nurse', 'N3', 'nurse3@email.com', '57998f8b306cae8fd7244eb15d564766f0c0f12ddf9fedf786a142f615055ba4943f02c7e4af4f51302a6845224f3d7c6dc55ab6116f0dbf1ce69cc075efacff'),
+(8, 'Patient', 'P1', 'patient1@email.com', 'fd658b2115aaf6592720b9ecfb35cdc86079b5040528c62adaa2d07d1910da56f38ea61ff66b72cf30eac023da52a7d599d5fe47dbe83350148b870d371772d6'),
+(9, 'Patient', 'P2', 'patient2@email.com', 'fd658b2115aaf6592720b9ecfb35cdc86079b5040528c62adaa2d07d1910da56f38ea61ff66b72cf30eac023da52a7d599d5fe47dbe83350148b870d371772d6');
 
 -- --------------------------------------------------------
 
@@ -109,30 +87,13 @@ CREATE TABLE `user_added_by` (
 --
 
 INSERT INTO `user_added_by` (`nurse_id`, `user_id`) VALUES
-(2, 1),
-(2, 6),
-(13, 7),
-(13, 8),
-(13, 9),
-(2, 12),
-(3, 13),
-(13, 14),
-(4, 15),
-(4, 16),
-(4, 17),
-(4, 18),
-(4, 19),
-(4, 20),
-(4, 21),
-(4, 22),
-(4, 23),
-(4, 24),
-(2, 25),
-(2, 26),
-(2, 27),
-(3, 30),
-(4, 31),
-(30, 32);
+(1, 3),
+(1, 4),
+(3, 5),
+(3, 6),
+(4, 7),
+(5, 8),
+(7, 9);
 
 -- --------------------------------------------------------
 
@@ -143,7 +104,7 @@ INSERT INTO `user_added_by` (`nurse_id`, `user_id`) VALUES
 CREATE TABLE `user_details` (
   `user_id` int(11) NOT NULL,
   `aadhaar_no` bigint(20) DEFAULT NULL,
-  `mobile` int(11) DEFAULT NULL,
+  `mobile` bigint(11) DEFAULT NULL,
   `address` varchar(250) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
   `gender` varchar(11) DEFAULT NULL
@@ -154,19 +115,15 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`user_id`, `aadhaar_no`, `mobile`, `address`, `date_of_birth`, `gender`) VALUES
-(1, 123456789010, 1234567890, 'Somewhere', '2021-05-31', 'Male'),
-(19, 123456789011, 1234567890, 'Something', '2021-05-31', 'Male'),
-(20, 123456789012, 1234567890, 'Something Here', '2021-05-31', 'Male'),
-(21, 123456789013, 1234567890, 'Something Here too', '2021-05-31', 'Male'),
-(22, 123456789014, 123456789, 'Nowhere', '2021-05-31', 'Male'),
-(23, 123456789015, 123456789, 'Nowhere', '2021-05-31', 'Male'),
-(24, 123456789016, 123456789, 'Nowhere', '2021-05-31', 'Male'),
-(25, 123456789009, 1234567890, 'Somewhere', '2010-01-02', 'Female'),
-(26, 123456789008, 1234567890, 'Somewhere', '2010-01-19', 'Female'),
-(27, 123456789000, 123456789, 'hyadjvasvd', '2021-06-03', 'Male'),
-(30, 333333333333, 2147483647, 'Somewhere in India', '2021-06-21', 'Female'),
-(31, 222222222222, 2147483647, 'Somewhere in UK', '2021-06-21', 'Male'),
-(32, 282828282828, 2147483647, 'Somewhere in Russia', '2021-06-21', 'Male');
+(1, 411111111111, 4111111111, 'Somewhere in US', '2021-06-23', 'Male'),
+(2, 422222222222, 4222222222, 'Somewhere in UK', '2021-06-23', 'Female'),
+(3, 311111111111, 3111111111, 'Somewhere in Asia', '2021-06-23', 'Male'),
+(4, 322222222222, 3222222222, 'Somewhere in Europe', '2021-06-23', 'Female'),
+(5, 211111111111, 2111111111, 'Somewhere in China', '2021-06-23', 'Male'),
+(6, 222222222222, 2222222222, 'Somewhere in Korea', '2021-06-23', 'Female'),
+(7, 233333333333, 2333333333, 'Somewhere in Hong Kong', '2021-06-23', 'Male'),
+(8, 111111111111, 1111111111, 'Somewhere in Nigeria', '2021-06-23', 'Male'),
+(9, 122222222222, 1222222222, 'Somewhere in Swiden', '2021-06-23', 'Female');
 
 -- --------------------------------------------------------
 
@@ -184,37 +141,15 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
-(1, 1),
-(2, 2),
+(1, 4),
+(2, 4),
 (3, 3),
-(4, 4),
-(6, 1),
-(7, 1),
+(4, 3),
+(5, 2),
+(6, 2),
+(7, 2),
 (8, 1),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
-(13, 2),
-(14, 1),
-(15, 1),
-(16, 1),
-(17, 1),
-(18, 1),
-(19, 1),
-(20, 1),
-(21, 1),
-(22, 1),
-(23, 1),
-(24, 1),
-(25, 1),
-(26, 1),
-(27, 1),
-(28, 1),
-(29, 1),
-(30, 2),
-(31, 3),
-(32, 1);
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -285,10 +220,7 @@ CREATE TABLE `user_symptoms` (
 --
 
 INSERT INTO `user_symptoms` (`user_id`, `fever`, `fever_s`, `cough`, `cough_s`, `tiredness`, `tiredness_s`, `chest_pain`, `chest_pain_s`, `head_ache`, `head_ache_s`, `stomach_ache`, `stomach_ache_s`, `kidney_failure`, `heart_problem`, `heart_problem_s`, `diabetes`, `diabetes_s`, `less_oxygen_level`, `less_oxygen_level_s`, `malignancy_cancer`, `malignancy_cancer_s`, `hypertension`, `hypertension_s`, `liver_disease`, `liver_disease_s`, `immunocompromised_condition`, `immunocompromised_condition_s`, `vomiting`, `vomiting_s`, `consume_steroids`, `sore_throat`, `sore_throat_s`, `diarrhea`, `diarrhea_s`, `congestion`, `congestion_s`, `sense_loss`, `sense_loss_s`, `skin_rash_discoloration`, `skin_rash_discoloration_s`, `trouble_breathing`, `trouble_breathing_s`, `contact_positive`, `is_positive`, `is_vaccinated`, `is_vaccinated_d`, `is_vaccinated_2`, `is_vaccinated_2_d`, `travelled`, `chills`, `chills_s`, `quarantine`, `quarantine_s`, `date_tested`) VALUES
-(1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, '2021-06-06 00:00:00', 0, '0000-00-00 00:00:00', 1, 0, 1, 0, 0, '2021-06-06 00:33:47'),
-(1, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 0, '2021-06-06 15:18:38'),
-(1, 1, 1, 1, 2, 1, 3, 1, 1, 1, 2, 1, 3, 1, 1, 3, 1, 1, 1, 1, 1, 2, 1, 3, 1, 0, 1, 1, 1, 2, 1, 1, 2, 1, 3, 1, 3, 1, 1, 1, 0, 1, 2, 1, 1, 1, '2021-04-06 00:00:00', 1, '2021-06-06 00:00:00', 1, 1, 1, 1, 0, '2021-06-06 15:56:49'),
-(1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0, 0, 0, 0, '2021-06-19 17:19:38');
+(8, 1, 1, 1, 3, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, '2021-04-16 00:00:00', 0, '0000-00-00 00:00:00', 1, 0, 1, 0, 0, '2021-06-23 22:14:35');
 
 --
 -- Indexes for dumped tables
@@ -346,7 +278,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
