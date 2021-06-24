@@ -168,7 +168,7 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == "Nur
                                                                 btn-success
                                                                 pt-2
                                                                 btn-block
-                                                            " value="Submit" />
+                                                            " value="Add Nurse" />
                                                 </div>
                                             </div>
                                         </div>
