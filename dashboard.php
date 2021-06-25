@@ -538,7 +538,8 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 }
 /* ------------------------------ End of Patient Dashboard ------------------------------*/
 
-/* ------------------------------ Nurse Dashboard ------------------------------*/ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
+/* ------------------------------ Nurse Dashboard ------------------------------*/ 
+elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div id="sidebar-container" class="sidebar-expanded">
@@ -757,7 +758,8 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 /* ------------------------------ End of Nurse Dashboard ------------------------------*/
 
 
-/* ------------------------------ Doctor Dashboard ------------------------------ */ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
+/* ------------------------------ Doctor Dashboard ------------------------------ */ 
+elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div id="sidebar-container" class="sidebar-expanded">
@@ -1046,7 +1048,8 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 }
 /* ------------------------------ End of Doctor Dashboard ------------------------------ */
 
-/* ------------------------------ Admin Dashboard ------------------------------ */ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
+/* ------------------------------ Admin Dashboard ------------------------------ */ 
+elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div id="sidebar-container" class="sidebar-expanded">
@@ -1408,7 +1411,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
                                     <div class="card-body">
                                         <p><?php echo $contact['message'] ?></p>
                                     </div>
-                                    <div class="card-footer">
+                                    <div class="card-footer <?php echo getContactType($contact['type']) ?>">
                                     </div>
                                 </div>
                             <?php
@@ -1429,7 +1432,8 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 /* ------------------------------ End of Admin Dashboard ------------------------------ */
 
 
-/* ------------------------------ If Not Logged In ------------------------------ */ else {
+/* ------------------------------ If Not Logged In ------------------------------ */ 
+else {
     //  if not logged in
     header("Location: login.php");
     print_r($_SESSION["userLoggedIn"]);
