@@ -1,3 +1,4 @@
+<title>Edit a User</title>
 <?php
     require_once('./includes/imports.php');
     require_once('./includes/config.php');
@@ -11,7 +12,7 @@
     require_once('./includes/components/navbar.php');
 
     $getInfo = $account->getInfo();
-	if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
+	if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
         // echo $_SESSION["userLoggedIn"];
 ?>
 <div class="container-fluid">

@@ -42,7 +42,7 @@ function displayDate($element)
 }
 
 $getInfo = $account->getInfo();
-if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
+if (isset($_SESSION["userLoggedIn"]) && $getInfo["role_name"] == 'Admin' || 'Nurse' || 'Doctor') {
     // echo $_SESSION["userLoggedIn"];
 ?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
@@ -52,13 +52,16 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
             width: 10px;
             height: 10px;
         }
+
         .text {
             margin-left: 5px;
         }
+
         .text-group {
             display: flex;
             align-items: center;
         }
+
         .indication-group {
             display: flex;
             justify-content: space-evenly;
@@ -100,149 +103,155 @@ if (isset($_SESSION["userLoggedIn"]) && $isAdmin = $getInfo["role_name"] == 'Adm
                     </div>
                 </div>
                 <hr>
-                <div class="row justify-content-center bg-dark text-light">
-                    <h3>Medical Details</h3>
-                </div>
                 <?php
-                $rows = $account->getUserSymptoms($id);
-                if (count($rows) > 0) {
+                if ($userInfo["role_name"]) {
                 ?>
-                    <table class="table table-responsive table-fluid myTable">
-                        <thead>
-                            <tr>
-                                <th scope='col'>Fever</th>
-                                <th scope='col'>Cough</th>
-                                <th scope='col'>Tiredness</th>
-                                <th scope='col'>Chest Pain</th>
-                                <th scope='col'>Head Ache</th>
-                                <th scope='col'>Stomach Ache</th>
-                                <th scope='col'>Oxygen Level</th>
-                                <th scope='col'>Sore Throat</th>
-                                <th scope='col'>Congestion</th>
-                                <th scope='col'>Sense Loss</th>
-                                <th scope='col'>Trouble Breathing</th>
-                                <th scope='col'>Travelled</th>
-                                <th scope='col'>Kidney Failure</th>
-                                <th scope='col'>Heart Problem</th>
-                                <th scope='col'>Diabetes</th>
-                                <th scope='col'>Malignancy Cancer</th>
-                                <th scope='col'>Hypertension</th>
-                                <th scope='col'>Liver Disease</th>
-                                <th scope='col'>Immunocompromised Condition</th>
-                                <th scope='col'>Vomiting</th>
-                                <th scope='col'>Consume Steroids</th>
-                                <th scope='col'>Diarrhea</th>
-                                <th scope='col'>Skin Rash Discoloration</th>
-                                <th scope='col'>Chills</th>
-                                <th scope='col'>Contacted COVID Positive</th>
-                                <th scope='col'>COVID Positive</th>
-                                <th scope='col'>1st Dose</th>
-                                <th scope='col'>2nd Dose</th>
-                                <th scope='col'>Quarantine</th>
-                                <th scope='col'>Tested At</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($rows as $row) {
-                            ?>
-                                <tr>
-                                    <th scope='row'><button class="form-control"><i class="fa fa-thermometer-half icons <?php echo iconColors($row['fever_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fa fa-head-side-cough icons <?php echo iconColors($row['cough_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fa fa-tired icons <?php echo iconColors($row['tiredness_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['chest_pain_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fa fa-head-side-virus icons <?php echo iconColors($row['head_ache_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['stomach_ache_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['less_oxygen_level_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['sore_throat_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['congestion_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['sense_loss_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['trouble_breathing_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-map-marked-alt icons <?php echo hasSymptom($row['travelled']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['kidney_failure']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['heart_problem_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diabetes_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['malignancy_cancer_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['hypertension_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['liver_disease']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-ban icons <?php echo iconColors($row['immunocompromised_condition_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['vomiting_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-capsules icons <?php echo hasSymptom($row['consume_steroids']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diarrhea_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-allergies icons <?php echo hasSymptom($row['skin_rash_discoloration']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-snowflake icons <?php echo iconColors($row['chills_s']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-people-arrows icons <?php echo hasSymptom($row['contact_positive']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-virus icons <?php echo hasSymptom($row['is_positive']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'> <?php echo displayDate($row['is_vaccinated_d']); ?> </th>
-
-                                    <th scope='row'> <?php echo displayDate($row['is_vaccinated_2_d']); ?> </th>
-
-                                    <th scope='row'><button class="form-control"><i class="fas fa-procedures icons <?php echo hasSymptom($row['quarantine']) ?>" aria-hidden="true"></i></button></th>
-
-                                    <th scope='row'> <?php echo $row['date_tested']; ?> </th>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                    </table>
-                    <div class="indication-group">
-                        <div class="text-group">
-                            <div class="cube bg-dark"></div>
-                            <div class="text">None</div>
-                        </div>
-                        <div class="text-group">
-                            <div class="cube bg-info"></div>
-                            <div class="text">Low</div>
-                        </div>
-                        <div class="text-group">
-                            <div class="cube bg-warning"></div>
-                            <div class="text">Medium</div>
-                        </div>
-                        <div class="text-group">
-                            <div class="cube bg-danger"></div>
-                            <div class="text">High</div>
-                        </div>
+                    <div class="row justify-content-center bg-dark text-light">
+                        <h3>Report History</h3>
                     </div>
-                <?php
-                } else {
-                ?>
-                    <strong>
-                        <span class='alert alert-danger row justify-content-center align-items-center'>0
-                            Results<span>
-                    </strong>
+                    <?php
+                    $rows = $account->getUserSymptoms($id);
+                    if (count($rows) > 0) {
+                    ?>
+                        <table class="table table-responsive table-fluid myTable">
+                            <thead>
+                                <tr>
+                                    <th scope='col'>Fever</th>
+                                    <th scope='col'>Cough</th>
+                                    <th scope='col'>Tiredness</th>
+                                    <th scope='col'>Chest Pain</th>
+                                    <th scope='col'>Head Ache</th>
+                                    <th scope='col'>Stomach Ache</th>
+                                    <th scope='col'>Oxygen Level</th>
+                                    <th scope='col'>Sore Throat</th>
+                                    <th scope='col'>Congestion</th>
+                                    <th scope='col'>Sense Loss</th>
+                                    <th scope='col'>Trouble Breathing</th>
+                                    <th scope='col'>Travelled</th>
+                                    <th scope='col'>Kidney Failure</th>
+                                    <th scope='col'>Heart Problem</th>
+                                    <th scope='col'>Diabetes</th>
+                                    <th scope='col'>Malignancy Cancer</th>
+                                    <th scope='col'>Hypertension</th>
+                                    <th scope='col'>Liver Disease</th>
+                                    <th scope='col'>Immunocompromised Condition</th>
+                                    <th scope='col'>Vomiting</th>
+                                    <th scope='col'>Consume Steroids</th>
+                                    <th scope='col'>Diarrhea</th>
+                                    <th scope='col'>Skin Rash Discoloration</th>
+                                    <th scope='col'>Chills</th>
+                                    <th scope='col'>Contacted COVID Positive</th>
+                                    <th scope='col'>COVID Positive</th>
+                                    <th scope='col'>1st Dose</th>
+                                    <th scope='col'>2nd Dose</th>
+                                    <th scope='col'>Quarantine</th>
+                                    <th scope='col'>Tested At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($rows as $row) {
+                                ?>
+                                    <tr>
+                                        <th scope='row'><button class="form-control"><i class="fa fa-thermometer-half icons <?php echo iconColors($row['fever_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fa fa-head-side-cough icons <?php echo iconColors($row['cough_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fa fa-tired icons <?php echo iconColors($row['tiredness_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['chest_pain_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fa fa-head-side-virus icons <?php echo iconColors($row['head_ache_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['stomach_ache_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['less_oxygen_level_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['sore_throat_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['congestion_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['sense_loss_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['trouble_breathing_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-map-marked-alt icons <?php echo hasSymptom($row['travelled']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['kidney_failure']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-heartbeat icons <?php echo iconColors($row['heart_problem_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diabetes_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['malignancy_cancer_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['hypertension_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo hasSymptom($row['liver_disease']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-ban icons <?php echo iconColors($row['immunocompromised_condition_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['vomiting_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-capsules icons <?php echo hasSymptom($row['consume_steroids']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fab fa-creative-commons-sampling icons <?php echo iconColors($row['diarrhea_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-allergies icons <?php echo hasSymptom($row['skin_rash_discoloration']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-snowflake icons <?php echo iconColors($row['chills_s']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-people-arrows icons <?php echo hasSymptom($row['contact_positive']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-virus icons <?php echo hasSymptom($row['is_positive']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'> <?php echo displayDate($row['is_vaccinated_d']); ?> </th>
+
+                                        <th scope='row'> <?php echo displayDate($row['is_vaccinated_2_d']); ?> </th>
+
+                                        <th scope='row'><button class="form-control"><i class="fas fa-procedures icons <?php echo hasSymptom($row['quarantine']) ?>" aria-hidden="true"></i></button></th>
+
+                                        <th scope='row'> <?php echo $row['date_tested']; ?> </th>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                        </table>
+                        <div class="indication-group">
+                            <div class="text-group">
+                                <div class="cube bg-dark"></div>
+                                <div class="text">None</div>
+                            </div>
+                            <div class="text-group">
+                                <div class="cube bg-info"></div>
+                                <div class="text">Low</div>
+                            </div>
+                            <div class="text-group">
+                                <div class="cube bg-warning"></div>
+                                <div class="text">Medium</div>
+                            </div>
+                            <div class="text-group">
+                                <div class="cube bg-danger"></div>
+                                <div class="text">High</div>
+                            </div>
+                        </div>
+                    <?php
+                    } else {
+                    ?>
+                        <strong>
+                            <span class='alert alert-danger row justify-content-center align-items-center'>0
+                                Results<span>
+                        </strong>
+                    <?php
+                    }
+                    ?>
+                    <hr>
+                    <div class="row justify-content-center bg-dark text-light">
+                        <h3>Medical Details</h3>
+                    </div>
                 <?php
                 }
                 ?>
-                <hr>
-                <div class="row justify-content-center bg-dark text-light">
-                    <h3>Report History</h3>
-                </div>
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary float-right"><i class="fa fa-print" onclick="window.print();"></i> Print</button>
