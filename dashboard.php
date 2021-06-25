@@ -1,43 +1,5 @@
 <title>Dashboard</title>
 
-<style>
-    #sidebar-container {
-        min-height: 100vh;
-        background-color: #333;
-        padding: 0;
-    }
-
-    /* Sidebar sizes when expanded and expanded */
-    .sidebar-expanded {
-        width: 230px;
-    }
-
-    .sidebar-collapsed {
-        width: 90px;
-    }
-
-    /* Menu item*/
-    #sidebar-container .list-group a {
-        height: 50px;
-        color: white;
-    }
-
-    .loggedIn {
-        height: 100px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .collapsed-icons {
-        display: flex;
-        justify-content: flex-end;
-        align-content: center;
-        transform: scale(1.2);
-    }
-</style>
-
 <?php
 require_once('./includes/imports.php');
 require_once('./includes/config.php');
@@ -76,6 +38,19 @@ function displayDate($element)
         return '-';
     }
     return substr($element, 0, 10);
+}
+
+function getContactType($type)
+{
+    if ($type == "Feedback") {
+        return "bg-success";
+    } elseif ($type == "Report a bug") {
+        return "bg-danger";
+    } elseif ($type == "Feature Request") {
+        return "bg-info";
+    } elseif ($type == "Other") {
+        return "bg-dark";
+    }
 }
 
 ?>
@@ -563,8 +538,7 @@ if (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Patient") {
 }
 /* ------------------------------ End of Patient Dashboard ------------------------------*/
 
-/* ------------------------------ Nurse Dashboard ------------------------------*/ 
-elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
+/* ------------------------------ Nurse Dashboard ------------------------------*/ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div id="sidebar-container" class="sidebar-expanded">
@@ -783,8 +757,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Nurse") {
 /* ------------------------------ End of Nurse Dashboard ------------------------------*/
 
 
-/* ------------------------------ Doctor Dashboard ------------------------------ */ 
-elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
+/* ------------------------------ Doctor Dashboard ------------------------------ */ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div id="sidebar-container" class="sidebar-expanded">
@@ -1073,8 +1046,7 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Doctor") 
 }
 /* ------------------------------ End of Doctor Dashboard ------------------------------ */
 
-/* ------------------------------ Admin Dashboard ------------------------------ */ 
-elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
+/* ------------------------------ Admin Dashboard ------------------------------ */ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
 ?>
     <div class="row flex-row flex-nowrap" style="min-height:100vh; margin-right:0;">
         <div id="sidebar-container" class="sidebar-expanded">
@@ -1111,6 +1083,13 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                     <div class="icon">
                         <span class="fas fa-notes-medical fa-fw mr-3"></span>
                         <span class="menu-collapsed">Doctors</span>
+                    </div>
+                </a>
+
+                <a href="#a-pills-contact" aria-expanded="false" class="bg-dark text-light list-group-item list-group-item-action flex-column align-items-start" class="nav-link text-white mb-4" id="a-pills-contact-tab" data-toggle="pill" role="tab" aria-controls="a-pills-contact" aria-selected="true">
+                    <div class="icon">
+                        <span class="fas fa-notes-medical fa-fw mr-3"></span>
+                        <span class="menu-collapsed">Contact Forms</span>
                     </div>
                 </a>
 
@@ -1413,6 +1392,35 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
                         ?>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="a-pills-contact" role="tabpanel" aria-labelledby="a-pills-doctor-tab">
+                    <div class="contacts">
+                        <?php
+                        $contacts = $account->getContacts();
+                        /* Contacts > 0 */
+                        if ($contacts > 0) {
+                            foreach ($contacts as $contact) {
+                        ?>
+                                <div class="card contact-card">
+                                    <div class="card-header text-light <?php echo getContactType($contact['type']) ?>">
+                                        From: <?php echo $contact['first_name'] . " " . $contact['last_name'] ?><br>
+                                        Mail: <a class="text-dark" href="mailto:<?php echo $contact['email'] ?>"><?php echo $contact['email'] ?></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><?php echo $contact['message'] ?></p>
+                                    </div>
+                                    <div class="card-footer">
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <div class="alert alter-danger">There are no Contact Form Responses</div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1428,62 +1436,4 @@ elseif (isset($_SESSION["userLoggedIn"]) && $userInfo["role_name"] == "Admin") {
 }
 require_once('./includes/importsAfter.php');
 ?>
-<script>
-    $('.myTable').DataTable({
-        pagingType: 'full_numbers',
-        lengthMenu: [
-            [20, 50, 100, -1],
-            [20, 50, 100, "All"]
-        ]
-    });
-
-    // Hide sub menus
-    $('#body-row .collapse').collapse('hide');
-
-    // Collapse/Expand icon
-    $('#collapse-icon').addClass('fa-angle-double-left');
-
-    // Collapse click
-    $('[data-toggle=sidebar-collapse]').click(function() {
-        SidebarCollapse();
-        iconScale();
-    });
-
-    $(document).ready(function() {
-        if ($(window).width() < 786) {
-            SidebarCollapse();
-            iconScale();
-        }
-    });
-
-    function iconScale() {
-        if ($('#sidebar-container').hasClass('sidebar-expanded')) {
-            console.log('Expanded');
-            $('.icon').removeClass('collapsed-icons');
-            $('.loggedIn').show();
-        }
-        if ($('#sidebar-container').hasClass('sidebar-collapse')) {
-            console.log('Collapsed');
-            $('.icon').addClass('collapsed-icons');
-            $('.loggedIn').hide();
-        }
-    };
-
-    function SidebarCollapse() {
-        $('.menu-collapsed').toggleClass('d-none');
-        $('.sidebar-subMenu').toggleClass('d-none');
-        $('.subMenu-icon').toggleClass('d-none');
-        $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapse');
-
-        // Treating d-flex/d-none on separators with title
-        var SeparatorTitle = $('.sidebar-separator-title');
-        if (SeparatorTitle.hasClass('d-flex')) {
-            SeparatorTitle.removeClass('d-flex');
-        } else {
-            SeparatorTitle.addClass('d-flex');
-        }
-
-        // Collapse/Expand icon
-        $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-    }
-</script>
+<script src="./includes/js/dashboard.js"></script>

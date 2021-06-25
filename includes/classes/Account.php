@@ -146,6 +146,12 @@ class Account
         return $userInfo;
     }
 
+    public function getContacts() {
+        $query = $this->conn->prepare("SELECT * FROM contact");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     /* Adding User Info */
     private function addPatient($fn, $ln, $em, $pass)
     {

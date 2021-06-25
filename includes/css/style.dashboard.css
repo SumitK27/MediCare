@@ -52,3 +52,18 @@
     align-content: center;
     transform: scale(1.2);
 }
+
+.contact-card {
+    height: 250px;
+    width: 350px;
+    max-height: 250px;
+    max-width: 350px;
+    margin: 10px;
+}
+
+.contacts {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
